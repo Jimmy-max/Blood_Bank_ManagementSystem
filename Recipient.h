@@ -4,18 +4,20 @@ using namespace std;
 class Recipient
 {
 public:
+	Recipient(); // constructor
+
 	//variables
 	int id;
 	string name;
 	string mail;
 	int password;
 	int age;
-	string gender;
+	enum  gender {};
 	string blood_type;
 	string hospital;
 	string doc_of_case;
-	//functions
-	Recipient();
+
+	//functions - methods
 	void reg(); // register
 	void login();
 	void updateAccount();
@@ -23,6 +25,7 @@ public:
 	bool isBloodAvailable();
 	void displayBloodData();
 	void requestAndConfirm();
-	~Recipient();
+
+	~Recipient(); //destructor
 };
 

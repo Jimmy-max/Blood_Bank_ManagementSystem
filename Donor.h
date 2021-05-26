@@ -4,14 +4,30 @@ using namespace std;
 
 class Donor
 {
-private:
-	//variables
-	int ID;
-	string Name;
-	string Mail;
-	int Password;
-	int Age;
-
 public:
+	Donor(); // constructor
+
+	//variables
+	int id;
+	string name;
+	string mail;
+	int password;
+	int age;
+	enum  gender{};
+	string  bloodType;
+	enum suffersFromDisease{};
+	string other;
+
+	//functions - methods
+	void reg(); // register
+	void login();
+	void updateAccount();
+	void deleteAccount();
+	void donationRequest();
+
+	
+	~Donor(); // destructor
+
+
 };
 
