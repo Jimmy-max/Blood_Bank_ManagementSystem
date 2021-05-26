@@ -1,12 +1,14 @@
 #include <string>
-#include <string.h>
+
+using namespace std;
 
 class Donor
 {
 private:
 	//variables
 	int ID;
-	String s;
+	string Name;
+	string Mail;
 public:
 };
 
