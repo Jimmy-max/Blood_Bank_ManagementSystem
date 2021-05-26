@@ -17,6 +17,7 @@ public:
 	string  bloodType;
 	enum suffersFromDisease{};
 	string other;
+	string date_latest_donation;
 
 	//functions - methods
 	void reg(); // register
