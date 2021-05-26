@@ -9,6 +9,9 @@ private:
 	int ID;
 	string Name;
 	string Mail;
+	int Password;
+	int Age;
+
 public:
 };
 
