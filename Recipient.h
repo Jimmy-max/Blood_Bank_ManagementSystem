@@ -1,5 +1,6 @@
 #include <string>
 #include "User.h"
+#pragma once
 
 using namespace std;
 class Recipient : public User

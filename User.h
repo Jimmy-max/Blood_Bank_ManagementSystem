@@ -1,4 +1,5 @@
 #include <string>
+#pragma once
 
 using namespace std;
 class User
@@ -12,7 +13,7 @@ public:
 	string mail;
 	int password;
 	int age;
-	enum  gender {};
+	string  gender;
 	string blood_type;
 
 	//functions - methods
