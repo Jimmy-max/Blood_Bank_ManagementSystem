@@ -16,12 +16,6 @@ public:
 	string  gender;
 	string blood_type;
 
-	//functions - methods
-	void reg(); // register
-	void login();
-	void updateAccount();
-	void deleteAccount();
-
 	~User();// destructor
 };
 

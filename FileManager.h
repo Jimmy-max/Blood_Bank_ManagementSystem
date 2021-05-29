@@ -10,6 +10,7 @@
 using namespace std;
 class FileManager
 {
+public:
 	void readDonor(vector<Donor>& donor);
 	void writeDonor(vector<Donor>);
 	void readRecipient(vector<Recipient>& recipient);

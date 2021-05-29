@@ -13,6 +13,10 @@ public:
 	string doc_of_case;
 
 	//functions - methods
+	void reg(); // register
+	void login();
+	void updateAccount();
+	void deleteAccount();
 	bool isBloodAvailable();
 	void displayBloodData();
 	void requestAndConfirm();

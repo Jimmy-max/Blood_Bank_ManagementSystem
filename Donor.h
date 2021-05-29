@@ -14,6 +14,10 @@ public:
 	string date_latest_donation;
 
 	//functions - methods
+	void reg(); // register
+	void login();
+	void updateAccount();
+	void deleteAccount();
 	void donationRequest();
 
 	
