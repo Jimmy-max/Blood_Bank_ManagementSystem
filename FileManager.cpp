@@ -60,6 +60,8 @@ void FileManager::writeDonor(vector<Donor>donor) {
     }
     file.close();
 }
+
+
 ///
 /// 
 /// Recipient Functions
@@ -103,7 +105,7 @@ void FileManager::readRecipient(vector<Recipient>& recipient) {
 //Write ""Method"" 3shan gemy
 void FileManager::writeRecipient(vector<Recipient> recipient) {
     ofstream file;
-    file.open("Donor.txt", ios::out);
+    file.open("Recipient.txt", ios::out);
     Recipient r;
     int flag = 0;
     for (size_t i = 0; i < recipient.size(); i++)

@@ -1,5 +1,8 @@
 #include <string>
-#include "User.h"
+#include <vector>
+#include <string>
+
+
 #pragma once
 
 using namespace std;
@@ -15,7 +18,7 @@ public:
 	//functions - methods
 	void reg(); // register
 	void login();
-	void updateAccount();
+	void updateAccount(vector<Recipient>& datarecipient , int index);
 	void deleteAccount();
 	bool isBloodAvailable();
 	void displayBloodData();
@@ -23,4 +26,5 @@ public:
 
 	~Recipient(); //destructor
 };
+
 

@@ -1,5 +1,8 @@
 #include <iostream>
 #include "FileManager.h"
+#include "Recipient.h"
+
+
 
 using namespace std;
 int main() {
@@ -10,7 +13,9 @@ int main() {
 	file.readDonor(vDonor);
 	file.readRecipient(vRecipient);
 
+
 	//Start here!!!
+
 
 	Donor donor;
 	donor.reg();
