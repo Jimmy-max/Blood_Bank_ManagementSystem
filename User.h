@@ -11,7 +11,7 @@ public:
 	int id;
 	string name;
 	string mail;
-	int password;
+	string password;
 	int age;
 	string  gender;
 	string blood_type;

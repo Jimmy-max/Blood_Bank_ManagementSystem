@@ -16,7 +16,7 @@ void FileManager::readDonor(vector<Donor>& donor) {
         int id;
         string name;
         string mail;
-        int password;
+        string password;
         int age;
         string  gender;
         string blood_type;
@@ -77,7 +77,7 @@ void FileManager::readRecipient(vector<Recipient>& recipient) {
         int id;
         string name;
         string mail;
-        int password;
+        string password;
         int age;
         string  gender;
         string blood_type;

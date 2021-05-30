@@ -12,6 +12,7 @@ Recipient::Recipient() {
 }
 
 void Recipient::reg() {
+
 	cout << "pleas enter your id (It should be a number)" << endl;
 	cin >> id;
 	while (cin.fail())
@@ -114,7 +115,7 @@ void Recipient::updateAccount(vector<Recipient>& datarecipient, int index)
 		if (choice == 1)
 		{
 			cout << "Enter your New password \n";
-			int newpassword;
+			string newpassword;
 			cin >> newpassword;
 			datarecipient[index].password = newpassword;
 			cout << " \n-----------------------------\n";
