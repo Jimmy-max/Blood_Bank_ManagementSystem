@@ -2,6 +2,8 @@
 #include <vector>
 #include <fstream>
 #include <iostream>
+#include "FileManager.h"
+
 
 using namespace std;
 
@@ -87,20 +89,7 @@ void Recipient::updateAccount(vector<Recipient>& datarecipient, int index)
 	cout << "update successful \n";
 	cout << "-----------------------------\n";
 
-	// remove  old date , transfer new date 
-	fstream file;
-	file.open("Recipient.txt", ios::out  | ios::trunc);
-	Recipient r;
-	int flag = 0;
-	for (size_t i = 0; i < datarecipient.size(); i++)
-	{
-		file << datarecipient[i].id << endl << datarecipient[i].name << endl << datarecipient[i].mail << endl << datarecipient[i].password << endl <<
-			datarecipient[i].age << endl << datarecipient[i].gender << endl << datarecipient[i].blood_type << endl <<
-			datarecipient[i].hospital << endl << datarecipient[i].doc_of_case;
-		if (flag < datarecipient.size() - 1)
-			file << endl;
-		flag++;
-	}
-	file.close();
-
+	FileManager file; 
+	file.writeRecipient(datarecipient);
+	
 }
