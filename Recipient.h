@@ -19,7 +19,7 @@ public:
 	void reg(); // register
 	void login();
 	void updateAccount(vector<Recipient>& datarecipient , int index);
-	void deleteAccount();
+	void deleteAccount(vector<Recipient>& datarecipient, int index);
 	bool isBloodAvailable();
 	void displayBloodData();
 	void requestAndConfirm();

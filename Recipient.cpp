@@ -83,7 +83,7 @@ void Recipient::updateAccount(vector<Recipient>& datarecipient, int index)
 
 		cout << "Do you want to make anthor update ? (y/n) \n";
 		cin >> c;
-		cout << " \n-----------------------------\n";
+		cout << " \n-----------------------------\n"; 
 	}
 
 	cout << "update successful \n";
@@ -92,4 +92,10 @@ void Recipient::updateAccount(vector<Recipient>& datarecipient, int index)
 	FileManager file; 
 	file.writeRecipient(datarecipient);
 	
+}
+
+void Recipient::deleteAccount(vector<Recipient>& datarecipient, int index)
+{
+
+	datarecipient.erase(datarecipient.begin() + index);
 }
