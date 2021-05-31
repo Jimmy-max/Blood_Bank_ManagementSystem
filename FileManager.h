@@ -15,5 +15,7 @@ public:
 	void writeDonor(vector<Donor>);
 	void readRecipient(vector<Recipient>& recipient);
 	void writeRecipient(vector<Recipient>);
+	void readDonations(vector<Donations>& donation);
+	void writeDonations(vector<Donations>);
 };
 

@@ -91,8 +91,25 @@ void Recipient::displayBloodData() {
 }
 
 
-bool Recipient::isBloodAvailable() {
-	return 0;
+void Recipient::isBloodAvailable(vector<Donations>& donation) {
+	bool isBloodAvailable = false;
+	for (size_t i = 0; i < donation.size(); i++)
+	{
+		
+		if (donation[i].blood_type == blood_type)
+		{
+			isBloodAvailable = true;
+			break;
+		}
+	}
+	if (isBloodAvailable)
+	{
+		cout << "Your Blood type is Available : " << blood_type << endl;
+	}
+	else
+	{
+		cout << "Your Blood type is Unavailable : " << blood_type << endl;
+	}
 }
 
 void Recipient::requestAndConfirm() {

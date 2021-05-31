@@ -52,5 +52,8 @@
     <Text Include="Recipient.txt">
       <Filter>Source Files</Filter>
     </Text>
+    <Text Include="Donations.txt">
+      <Filter>Source Files</Filter>
+    </Text>
   </ItemGroup>
 </Project>

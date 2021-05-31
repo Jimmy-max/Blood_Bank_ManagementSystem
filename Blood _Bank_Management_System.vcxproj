@@ -152,6 +152,7 @@
     <ClInclude Include="User.h" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="Donations.txt" />
     <Text Include="Donor.txt" />
     <Text Include="Recipient.txt" />
   </ItemGroup>
