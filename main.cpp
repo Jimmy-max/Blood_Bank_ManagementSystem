@@ -1,7 +1,5 @@
 #include <iostream>
 #include "FileManager.h"
-#include "Recipient.h"
-#include "Donor.h"
 
 
 using namespace std;

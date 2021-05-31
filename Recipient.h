@@ -1,7 +1,6 @@
 #include <string>
 #include <vector>
-#include <string>
-
+#include "User.h"
 
 #pragma once
 
