@@ -18,8 +18,8 @@ public:
 	//functions - methods
 	void reg(); // register
 	void login();
-	void updateAccount();
-	void deleteAccount();
+	void updateAccount(vector<Donor>& dataDonar, int index);
+	void deleteAccount(vector<Donor>& dataDonar, int index);
 	static void donationRequest(vector<Donor> donor, int index, vector<Donor>& donations);
 
 	

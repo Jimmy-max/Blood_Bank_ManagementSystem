@@ -115,6 +115,7 @@ void Donor::reg()
 		}
 		else if (f == 2)
 		{
+			other = "No";
 			cout << "pleas enter your date latest donation ,like :day/month/year" << endl;
 			cin.ignore();
 			getline(cin, date_latest_donation);
@@ -135,12 +136,119 @@ void Donor::login()
 {
 
 }
-void Donor::updateAccount()
+void Donor::updateAccount(vector<Donor>& dataDonar, int index)
 {
+	char c = 'y';
+	while (c == 'y')
+	{
+		cout << "Enter number to updata \n 1-Password  \n 2-Age \n 3-Diseases that you suffer from \n 4-Other diseases or take any medicine \n 5-Date latest donation  \n 6-Done \n";
+		int choice;
+		cin >> choice;
+		cout << " \n-----------------------------\n";
+		if (choice == 1)
+		{
+			cout << "Enter your New password \n";
+			string newpassword;
+			cin >> newpassword;
+			dataDonar[index].password = newpassword;
+			cout << " \n-----------------------------\n";
+
+		}
+		else if (choice == 2)
+		{
+			cout << "Enter your New age \n";
+			int newage;
+			cin >> newage;
+			dataDonar[index].age = newage;
+			cout << " \n-----------------------------\n";
+		}
+		else if (choice == 3)
+		{
+			cout << "If you have a chronic illnes,  like(blood pressure disorders, thyroid disease, diabetes ,cancer, heart disorders,hepatitis) Please write down these disease" << endl;
+			cout << "If you do not have any disease, write (NO)" << endl;
+			string suffersFromDisease ;
+			cin >> suffersFromDisease ;
+			bool m = true;
+			do {
+				if (suffersFromDisease == "blood pressure disorders" || suffersFromDisease == "thyroid disease" || suffersFromDisease == "diabetes " || suffersFromDisease == "cancer" || suffersFromDisease == "heart disorders" || suffersFromDisease == "hepatitis" || suffersFromDisease == "NO")
+				{
+					dataDonar[index].suffersFromDisease = suffersFromDisease ; 
+					cout << " \n-----------------------------\n";
+					break;
+				}
+				else
+				{
+					cout << "     same thing is wrong ,please try again ?!" << endl;
+					cin >> suffersFromDisease ;
+				}
+
+			} while (m != false);
+
+		}
+		else if (choice == 4)
+		{
+			int check = true;
+			do
+			{	
+				cout << "If you have other diseases or take any medicine, please press 1  " << endl;
+				cout << "If you are not suffering from any other diseases, please press 2  " << endl;
+				int t ;
+				cin >> t ;
+				if (t == 1)
+				{
+					cout << "Please enter this disease here " << endl;
+					string other;
+					cin >> other;
+					dataDonar[index].other = other ;
+					break;
+				}
+				else if (t == 2)
+				{
+					dataDonar[index].other = "NO"; 
+					break;
+				}
+				else
+				{
+					cout << " Choice is not available ,please try again " << endl;
+					break;
+
+				}
+			} while (check != false);
+			
+			cout << " \n-----------------------------\n";
+		}
+		else if (choice == 5)
+		{
+			cout << "pleas enter your date latest donation ,like :day/month/year" << endl;
+			string date_latest_donation; 
+			cin.ignore();
+			getline(cin, date_latest_donation);
+			dataDonar[index].date_latest_donation = date_latest_donation; 
+			cout << " \n-----------------------------\n";
+
+		}
+		else if (choice == 6)
+		{
+			break; 
+		}
+		else
+		{
+			cout << "You enter wrong number";
+		}
+
+		cout << "Do you want to make anthor update ? (y/n) \n";
+		cin >> c;
+		cout << " \n-----------------------------\n";
+	}
+
+	cout << "update successful \n";
+	cout << "-----------------------------\n";
 }
-void Donor::deleteAccount()
+void Donor::deleteAccount(vector<Donor>& dataDonar, int index)
 {
+	dataDonar.erase(dataDonar.begin() + index);
 }
+
 void Donor::donationRequest(vector<Donor> donor, int index, vector<Donor>& donations) {
 	//if() check date of last donation
 	cout << "Your donation is accepted"<<endl;
