@@ -1,7 +1,7 @@
 #include <string>
 #include <vector>
-#include "User.h"
 #include "Donor.h"
+#include "User.h"
 
 #pragma once
 
@@ -20,7 +20,7 @@ public:
 	void login();
 	void updateAccount(vector<Recipient>& datarecipient , int index);
 	void deleteAccount(vector<Recipient>& datarecipient, int index);
-	void isBloodAvailable(vector<Donations>& donation);
+	static void isBloodAvailable(vector<Donor>& donation, int index, vector<Recipient>& recipient);
 	void displayBloodData();
 	void requestAndConfirm();
 

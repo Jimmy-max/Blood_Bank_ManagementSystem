@@ -1,5 +1,7 @@
 #include "Donor.h"
+#include "FileManager.h"
 #include <iostream>
+
 
 using namespace std;
 
@@ -139,8 +141,11 @@ void Donor::updateAccount()
 void Donor::deleteAccount()
 {
 }
-void Donor::donationRequest() {
-
+void Donor::donationRequest(vector<Donor> donor, int index, vector<Donor>& donations) {
+	//if() check date of last donation
+	cout << "Your donation is accepted"<<endl;
+	FileManager file;
+	donations.push_back(donor[index]);
 }
 
 Donor::~Donor() {

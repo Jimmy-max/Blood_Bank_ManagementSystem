@@ -1,4 +1,5 @@
 #include <string>
+#include <vector>
 #include "User.h"
 
 #pragma once
@@ -19,7 +20,7 @@ public:
 	void login();
 	void updateAccount();
 	void deleteAccount();
-	void donationRequest();
+	static void donationRequest(vector<Donor> donor, int index, vector<Donor>& donations);
 
 	
 	~Donor(); // destructor

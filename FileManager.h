@@ -2,8 +2,8 @@
 #include <iostream>
 #include <string>
 #include <fstream>
-#include "Donor.h"
 #include "Recipient.h"
+#include "Donor.h"
 #pragma once
 
 
@@ -15,7 +15,7 @@ public:
 	void writeDonor(vector<Donor>);
 	void readRecipient(vector<Recipient>& recipient);
 	void writeRecipient(vector<Recipient>);
-	void readDonations(vector<Donations>& donation);
-	void writeDonations(vector<Donations>);
+	void readDonations(vector<Donor>& donor);
+	void writeDonations(vector<Donor>);
 };
 

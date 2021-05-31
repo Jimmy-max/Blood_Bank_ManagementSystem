@@ -3,7 +3,7 @@
 #include <fstream>
 #include <iostream>
 #include "FileManager.h"
-#include "User.h"
+
 
 
 using namespace std;
@@ -91,12 +91,11 @@ void Recipient::displayBloodData() {
 }
 
 
-void Recipient::isBloodAvailable(vector<Donations>& donation) {
+void Recipient::isBloodAvailable(vector<Donor>& donation,int index, vector<Recipient>& recipient) {
 	bool isBloodAvailable = false;
 	for (size_t i = 0; i < donation.size(); i++)
 	{
-		
-		if (donation[i].blood_type == blood_type)
+		if (donation[i].blood_type == recipient[index].blood_type)
 		{
 			isBloodAvailable = true;
 			break;
@@ -104,11 +103,11 @@ void Recipient::isBloodAvailable(vector<Donations>& donation) {
 	}
 	if (isBloodAvailable)
 	{
-		cout << "Your Blood type is Available : " << blood_type << endl;
+		cout << "Your Blood type is Available : " << recipient[index].blood_type << endl;
 	}
 	else
 	{
-		cout << "Your Blood type is Unavailable : " << blood_type << endl;
+		cout << "Your Blood type is Unavailable : " << recipient[index].blood_type << endl;
 	}
 }
 
@@ -181,8 +180,9 @@ void Recipient::updateAccount(vector<Recipient>& datarecipient, int index)
 	cout << "update successful \n";
 	cout << "-----------------------------\n";
 
-	FileManager file; 
-	file.writeRecipient(datarecipient);
+	// Wrong (remind her/ask why)
+	//FileManager file; 
+	//file.writeRecipient(datarecipient);
 	
 }
 

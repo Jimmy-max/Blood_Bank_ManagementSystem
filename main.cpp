@@ -8,11 +8,12 @@ int main() {
 
 	//Store Logic
 	vector<Donor> vDonor;
+	vector<Donor> vDonations;
 	vector<Recipient> vRecipient;
 	FileManager file;
 	file.readDonor(vDonor);
 	file.readRecipient(vRecipient);
-
+	file.readDonations(vDonations);
 
 	////Start here!!!
 	cout << "                              Welcome to the Blood Bank Management system                              \n " << endl;
@@ -87,6 +88,7 @@ int main() {
 	//End here!!!!
 	file.writeRecipient(vRecipient);
 	file.writeDonor(vDonor);
+	file.writeDonations(vDonations);
 }
 
 

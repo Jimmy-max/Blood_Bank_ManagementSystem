@@ -47,7 +47,6 @@ void FileManager::readDonor(vector<Donor>& donor) {
 void FileManager::writeDonor(vector<Donor>donor) {
     ofstream file;
     file.open("Donor.txt", ios::out);
-    Donor std;
     int flag = 0;
     for (size_t i = 0; i < donor.size(); i++)
     {
@@ -114,6 +113,53 @@ void FileManager::writeRecipient(vector<Recipient> recipient) {
             recipient[i].age << endl << recipient[i].gender << endl << recipient[i].blood_type << endl <<
             recipient[i].hospital << endl << recipient[i].doc_of_case;
         if (flag < recipient.size() - 1)
+            file << endl;
+        flag++;
+    }
+    file.close();
+}
+///
+/// 
+/// Donation Functions
+/// 
+///
+void FileManager::readDonations(vector<Donor>& donor) {
+    ifstream file;
+    file.open("Donations.txt", ios::in);
+    Donor d;
+    while (!file.eof())
+    {
+        //Initiating vars
+        int id;
+        string blood_type;
+        string suffersFromDisease;
+        string other;
+        string date_latest_donation;
+
+        //Reading files
+        file >> id >> blood_type >> suffersFromDisease >> other >> date_latest_donation;
+
+        //Transefering to the Vector
+        d.id = id;
+        d.blood_type = blood_type;
+        d.suffersFromDisease = suffersFromDisease;
+        d.other = other;
+        d.date_latest_donation = date_latest_donation;
+        donor.push_back(d);
+    }
+    file.close();
+}
+
+//Write ""Method"" 3shan gemy
+void FileManager::writeDonations(vector<Donor>donor) {
+    ofstream file;
+    file.open("Donations.txt", ios::out);
+    int flag = 0;
+    for (size_t i = 0; i < donor.size(); i++)
+    {
+        file << donor[i].id << endl << donor[i].blood_type << endl <<
+            donor[i].suffersFromDisease << endl << donor[i].other << endl << donor[i].date_latest_donation;
+        if (flag < donor.size() - 1)
             file << endl;
         flag++;
     }
