@@ -50,30 +50,32 @@ void Donor::reg()
 	cout << "pleas enter your age (The donor must be between 17 and 60 years old)" << endl;
 	int year;
 	int old = true;
-	cin >> year;
-	while (cin.fail())
+	while (true)
 	{
-		cout << "     ERROR ,Please enter age using numbers only" << endl;
-		cin.clear();
-		cin.ignore(256, '\n');
 		cin >> year;
-	}
-	do
-	{
-		if (year < 60 || year > 17)
+		if (cin.fail())
 		{
-			age = year;
-			old = false;
-			break;
+			cout << "     ERROR ,Please enter age using numbers only" << endl;
+			cin.clear();
+			cin.ignore(256, '\n');
+			continue;
 		}
 		else
 		{
-			cout << "     ERROR ,Please enter age between 17 and 60 years old " << endl;
-			cin >> year;
-
+			if (year < 60 && year > 17)
+			{
+				age = year;
+				old = false;
+				break;
+			}
+			else
+			{
+				cout << "     ERROR ,Please enter age between 17 and 60 years old " << endl;
+				continue;
+			}
 		}
+	}
 
-	} while (old != false);
 	cout << "pleas enter your gender (female / male) " << endl;
 	string g;
 	cin >> g;
@@ -196,30 +198,31 @@ void Donor::updateAccount(vector<Donor>& dataDonar, int index)
 		{
 			cout << "pleas enter your age (The donor must be between 17 and 60 years old)" << endl;
 			int newage;
-			int old = true;
-			cin >> newage;
-			while (cin.fail())
+			while (true)
 			{
-				cout << "     ERROR ,Please enter age using numbers only" << endl;
-				cin.clear();
-				cin.ignore(256, '\n');
 				cin >> newage;
-			}
-			do
-			{
-				if (year < 60 || year > 17)
+				if (cin.fail())
 				{
-					dataDonar[index].age = newage;
-					break;
+					cout << "     ERROR ,Please enter age using numbers only" << endl;
+					cin.clear();
+					cin.ignore(256, '\n');
+					continue;
 				}
 				else
 				{
-					cout << "     ERROR ,Please enter age between 17 and 60 years old " << endl;
-					cin >> newage;
-
+					if (year < 60 && year > 17)
+					{
+						dataDonar[index].age = newage ;
+						break;
+					}
+					else
+					{
+						cout << "     ERROR ,Please enter age between 17 and 60 years old " << endl;
+						continue;
+					}
 				}
+			}
 
-			} while (old != false);
 			cout << " \n-----------------------------\n";
 		}
 		else if (choice == 3)
