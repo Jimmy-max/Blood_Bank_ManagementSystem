@@ -20,7 +20,7 @@ public:
 	void login();
 	void updateAccount(vector<Donor>& dataDonar, int index);
 	void deleteAccount(vector<Donor>& dataDonar, int index);
-	static void donationRequest(vector<Donor> donor, int index, vector<Donor>& donations);
+	static void donationRequest(vector<Donor>& donor, int index, vector<Donor>& donations);
 
 	
 	~Donor(); // destructor

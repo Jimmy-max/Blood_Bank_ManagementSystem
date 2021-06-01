@@ -1,7 +1,7 @@
 #include "Donor.h"
 #include "FileManager.h"
 #include <iostream>
-
+#pragma warning(disable : 4996)
 
 using namespace std;
 
@@ -249,10 +249,17 @@ void Donor::deleteAccount(vector<Donor>& dataDonar, int index)
 	dataDonar.erase(dataDonar.begin() + index);
 }
 
-void Donor::donationRequest(vector<Donor> donor, int index, vector<Donor>& donations) {
+void Donor::donationRequest(vector<Donor>& donor, int index, vector<Donor>& donations) {
 	//if() check date of last donation
 	cout << "Your donation is accepted"<<endl;
-	FileManager file;
+	time_t curr_time;
+	tm* curr_tm;
+	char s[50];
+	time(&curr_time);
+	curr_tm = localtime(&curr_time);
+	strftime(s, 50, "%F", curr_tm);
+	donor[index].date_latest_donation = s;
+
 	donations.push_back(donor[index]);
 }
 

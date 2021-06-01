@@ -1,6 +1,9 @@
 #include <iostream>
 #include "FileManager.h"
-
+#include <ctime>
+#include <chrono>
+#include <iomanip>
+#pragma warning(disable : 4996)
 
 using namespace std;
 
@@ -14,6 +17,13 @@ int main() {
 	file.readDonor(vDonor);
 	file.readRecipient(vRecipient);
 	file.readDonations(vDonations);
+
+	Recipient::displayBloodData(vDonations);
+
+	//Donor::donationRequest(vDonor, 0, vDonations);
+
+
+
 
 	////Start here!!!
 	cout << "                              Welcome to the Blood Bank Management system                              \n " << endl;

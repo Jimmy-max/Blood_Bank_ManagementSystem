@@ -3,6 +3,10 @@
 #include <fstream>
 #include <iostream>
 #include "FileManager.h"
+#include <map>
+#include <iterator>
+#include <stack>
+#pragma warning(disable : 4996)
 
 
 
@@ -86,8 +90,35 @@ void Recipient::reg() {
 
  
 
-void Recipient::displayBloodData() {
+void Recipient::displayBloodData(vector<Donor>& donation) {
+	map<string, int> m;
+	map<string, stack<string>> m2;
+	map<string, int>::iterator itr;
+	for (size_t i = 0; i < donation.size(); i++)
+	{
+		m[donation[i].blood_type] += 1;
+		m2[donation[i].blood_type].push(donation[i].date_latest_donation);
+	}
+	for (itr = m.begin(); itr != m.end(); ++itr)
+	{
+		cout << "Type: " << itr->first << " Quantity: " << itr->second << '\n';
+		while (!m2[itr->first].empty())
+		{
+			cout << "Received Date: " << m2[itr->first].top() << " Expiry Date :" << calculateExpiryDate(m2[itr->first].top()) << " Days Left" << endl;
+			m2[itr->first].pop();
+		}
+		
+	}
+}
 
+string Recipient::calculateExpiryDate(string oldDate) {
+	time_t curr_time;
+	tm* curr_tm;
+	char currentDate[50];
+	time(&curr_time);
+	curr_tm = localtime(&curr_time);
+	strftime(currentDate, 50, "%F", curr_tm);
+	return 0;
 }
 
 
@@ -111,7 +142,9 @@ void Recipient::isBloodAvailable(vector<Donor>& donation,int index, vector<Recip
 	}
 }
 
-void Recipient::requestAndConfirm() {
+void Recipient::requestAndConfirm(vector<Donor>& donation) {
+	cout << "Enter Blood Type: "; string bloodType; cin >> bloodType;
+	cout << "Enter Quantity: "; int quantity; cin >> quantity;
 
 }
 
