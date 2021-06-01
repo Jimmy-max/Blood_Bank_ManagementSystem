@@ -6,6 +6,7 @@
 #include <map>
 #include <iterator>
 #include <stack>
+#include <sstream>
 #pragma warning(disable : 4996)
 
 
@@ -112,13 +113,21 @@ void Recipient::displayBloodData(vector<Donor>& donation) {
 }
 
 string Recipient::calculateExpiryDate(string oldDate) {
+	/*int oldDateVal = 0;
+	int curDateVal=0;
 	time_t curr_time;
 	tm* curr_tm;
 	char currentDate[50];
 	time(&curr_time);
 	curr_tm = localtime(&curr_time);
 	strftime(currentDate, 50, "%F", curr_tm);
-	return 0;
+	string cr=currentDate;
+	oldDateVal = (stoi(oldDate.substr(0, 3)) *365)+(stoi(oldDate.substr(5, 6)) * 30) + (stoi(oldDate.substr(8, 9)));
+	curDateVal = (stoi(cr.substr(0, 3)) * 365) + (stoi(cr.substr(5, 6)) * 30) + (stoi(cr.substr(8, 9)));*/
+	DateTime date1 = DateTime.ParseExact(dateString1, "d/M/yyyy", CultureInfo.InvariantCulture);
+	DateTime date2 = DateTime.ParseExact(dateString2, "d/M/yyyy", CultureInfo.InvariantCulture);
+	var days = (int)(date2 - date1).TotalDays;
+	return to_string(20-(curDateVal-oldDateVal));
 }
 
 
