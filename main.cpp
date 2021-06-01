@@ -19,6 +19,7 @@ int main() {
 	file.readDonations(vDonations);
 
 	//Recipient::displayBloodData(vDonations);
+	//Recipient::requestAndConfirm(vDonations);
 	//Donor::donationRequest(vDonor, 0, vDonations);
 
 
