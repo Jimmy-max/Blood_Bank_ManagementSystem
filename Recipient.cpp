@@ -31,8 +31,26 @@ void Recipient::reg() {
 	cout << "pleas enter your name " << endl;
 	cin.ignore();
 	getline(cin, name);
-	cout << "pleas enter your email " << endl;
-	cin >> mail;
+
+	string str;
+	int m = true;
+	cout << "Enter your Email like : user_name@gmail.com " << endl;
+	cin >> str;
+	do
+	{
+		if (Email_check(str)) {
+			cout << "Your Email is valid" << endl;
+			mail = str;
+			m = false;
+			break;
+		}
+
+		else {
+			cout << "Your Email is invalid , please try again " << endl;
+			cin >> str;
+		}
+	} while (m != false);
+
 	cout << "pleas enter your password " << endl;
 	cin >> password;
 	cout << "pleas enter your age " << endl;
@@ -198,6 +216,13 @@ void Recipient::updateAccount(vector<Recipient>& datarecipient, int index)
 			cout << "Enter your New age \n";
 			int newage;
 			cin >> newage;
+			while (cin.fail())
+			{
+				cout << "     ERROR ,Please enter age using numbers only" << endl;
+				cin.clear();
+				cin.ignore(256, '\n');
+				cin >> newage ;
+			}
 			datarecipient[index].age = newage;
 			cout << " \n-----------------------------\n";
 		}
@@ -234,11 +259,6 @@ void Recipient::updateAccount(vector<Recipient>& datarecipient, int index)
 
 	cout << "update successful \n";
 	cout << "-----------------------------\n";
-
-	// Wrong (remind her/ask why)
-	//FileManager file; 
-	//file.writeRecipient(datarecipient);
-
 }
 
 void Recipient::deleteAccount(vector<Recipient>& datarecipient, int index)

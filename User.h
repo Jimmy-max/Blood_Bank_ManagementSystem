@@ -1,4 +1,6 @@
 #include <string>
+#include <regex>
+
 #pragma once
 using namespace std;
 class User
@@ -15,6 +17,7 @@ public:
 	string  gender;
 	string blood_type;
 
+	static bool Email_check(string); // validate Email
 	~User();// destructor
 };
 
