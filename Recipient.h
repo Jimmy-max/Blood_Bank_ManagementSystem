@@ -22,7 +22,7 @@ public:
 	void deleteAccount(vector<Recipient>& datarecipient, int index);
 	static void isBloodAvailable(vector<Donor>& donation, int index, vector<Recipient>& recipient);
 	static void displayBloodData(vector<Donor>& donation);
-	void requestAndConfirm(vector<Donor>& donation);
+	static void requestAndConfirm(vector<Donor>& donation);
 	static string calculateExpiryDate(string s);
 
 	~Recipient(); //destructor

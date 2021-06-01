@@ -13,6 +13,7 @@
 
 using namespace std;
 
+
 Recipient::Recipient() {
 
 }
@@ -115,6 +116,11 @@ void Recipient::displayBloodData(vector<Donor>& donation) {
 	map<string, int>::iterator itr;
 	for (size_t i = 0; i < donation.size(); i++)
 	{
+		if (calculateExpiryDate(donation[i].date_latest_donation) == "0")
+		{
+			donation.erase(donation.begin()+i);
+			continue;
+		}
 		m[donation[i].blood_type] += 1;
 		m2[donation[i].blood_type].push(donation[i].date_latest_donation);
 	}
@@ -153,7 +159,7 @@ string Recipient::calculateExpiryDate(string oldDate) {
 	int daysLeft = 20 - (((365 * curY + curY / 4 - curY / 100 + curY / 400 + (curM * 306 + 5) / 10 + (curD - 1))) - (365 * oldY + oldY / 4 - oldY / 100 + oldY / 400 + (oldM * 306 + 5) / 10 + (oldD - 1)));
 	if (daysLeft <= 0)
 	{
-		return "Expired";
+		return "0";
 	}
 	else
 	{
@@ -183,9 +189,54 @@ void Recipient::isBloodAvailable(vector<Donor>& donation, int index, vector<Reci
 }
 
 void Recipient::requestAndConfirm(vector<Donor>& donation) {
-	cout << "Enter Blood Type: "; string bloodType; cin >> bloodType;
-	cout << "Enter Quantity: "; int quantity; cin >> quantity;
+	map<string, int> m;
+	map<string, stack<string>> m2;
+	map<string, int>::iterator itr;
+	for (size_t i = 0; i < donation.size(); i++)
+	{
+		if (calculateExpiryDate(donation[i].date_latest_donation) == "0")
+		{
+			donation.erase(donation.begin() + i);
+			continue;
+		}
+		m[donation[i].blood_type] += 1;
+		m2[donation[i].blood_type].push(donation[i].date_latest_donation);
+	}
+	
+	while (true)
+	{
+		cout << "Enter Blood Type: "; string bloodType; cin >> bloodType;
+		if (m[bloodType]) {
+			cout << "Enter Quantity: "; int quantity; cin >> quantity;
 
+
+			if (m[bloodType] >= quantity) {
+				for (size_t i = 0; i < donation.size(); i++)
+				{
+					if (quantity == 0)
+					{
+						break;
+					}
+					if (donation[i].blood_type == bloodType)
+					{
+						donation.erase(donation.begin() + i);
+						quantity--;
+					}
+				}
+				cout << "Your request has been confirmed" << endl;
+				break;
+			}
+			else {
+				cout << "Quantity is not Available" << endl;
+			}
+		}
+		else
+		{
+			cout << "Blood Type is not Available" << endl;
+		}
+	}
+	
+	
 }
 
 Recipient::~Recipient() {
