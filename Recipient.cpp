@@ -57,7 +57,7 @@ void Recipient::reg() {
 			count = false;
 			break;
 		}
-		else 
+		else
 		{
 			cout << "     error,not available data pleas try again ?" << endl;
 			cout << "pleas enter your gender (female / male) " << endl;
@@ -76,7 +76,7 @@ void Recipient::reg() {
 			y = false;
 			break;
 		}
-		else 
+		else
 		{
 			cout << "     Incorrect blood type, please try again" << endl;
 			cin >> B;
@@ -89,7 +89,7 @@ void Recipient::reg() {
 	cin >> doc_of_case;
 }
 
- 
+
 
 void Recipient::displayBloodData(vector<Donor>& donation) {
 	map<string, int> m;
@@ -102,36 +102,49 @@ void Recipient::displayBloodData(vector<Donor>& donation) {
 	}
 	for (itr = m.begin(); itr != m.end(); ++itr)
 	{
-		cout << "Type: " << itr->first << " Quantity: " << itr->second << '\n';
+		cout << "Type: " << itr->first << "  Quantity: " << itr->second << '\n';
 		while (!m2[itr->first].empty())
 		{
-			cout << "Received Date: " << m2[itr->first].top() << " Expiry Date :" << calculateExpiryDate(m2[itr->first].top()) << " Days Left" << endl;
+			cout << "Received Date: " << m2[itr->first].top() << "  Expiry Date : " << calculateExpiryDate(m2[itr->first].top()) << endl;
 			m2[itr->first].pop();
 		}
-		
+		cout << endl;
+
 	}
 }
 
 string Recipient::calculateExpiryDate(string oldDate) {
-	/*int oldDateVal = 0;
-	int curDateVal=0;
+	//https://web.archive.org/web/20170507133619/https://alcor.concordia.ca/~gpkatch/gdate-algorithm.html Days algorism
 	time_t curr_time;
 	tm* curr_tm;
 	char currentDate[50];
 	time(&curr_time);
 	curr_tm = localtime(&curr_time);
 	strftime(currentDate, 50, "%F", curr_tm);
-	string cr=currentDate;
-	oldDateVal = (stoi(oldDate.substr(0, 3)) *365)+(stoi(oldDate.substr(5, 6)) * 30) + (stoi(oldDate.substr(8, 9)));
-	curDateVal = (stoi(cr.substr(0, 3)) * 365) + (stoi(cr.substr(5, 6)) * 30) + (stoi(cr.substr(8, 9)));*/
-	DateTime date1 = DateTime.ParseExact(dateString1, "d/M/yyyy", CultureInfo.InvariantCulture);
-	DateTime date2 = DateTime.ParseExact(dateString2, "d/M/yyyy", CultureInfo.InvariantCulture);
-	var days = (int)(date2 - date1).TotalDays;
-	return to_string(20-(curDateVal-oldDateVal));
+	string cr = currentDate;
+	int oldY = stoi(oldDate.substr(0, 3));
+	int oldM = stoi(oldDate.substr(5, 6));
+	int oldD = stoi(oldDate.substr(8, 9));
+	oldM = (oldM + 9) % 12;
+	oldY = oldY - oldM / 10;
+	int curY = stoi(cr.substr(0, 3));
+	int curM = stoi(cr.substr(5, 6));
+	int curD = stoi(cr.substr(8, 9));
+	curM = (curM + 9) % 12;
+	curY = curY - curM / 10;
+	int daysLeft = 20 - (((365 * curY + curY / 4 - curY / 100 + curY / 400 + (curM * 306 + 5) / 10 + (curD - 1))) - (365 * oldY + oldY / 4 - oldY / 100 + oldY / 400 + (oldM * 306 + 5) / 10 + (oldD - 1)));
+	if (daysLeft <= 0)
+	{
+		return "Expired";
+	}
+	else
+	{
+		return to_string(daysLeft) + " Days left";
+	}
 }
 
 
-void Recipient::isBloodAvailable(vector<Donor>& donation,int index, vector<Recipient>& recipient) {
+void Recipient::isBloodAvailable(vector<Donor>& donation, int index, vector<Recipient>& recipient) {
 	bool isBloodAvailable = false;
 	for (size_t i = 0; i < donation.size(); i++)
 	{
@@ -165,7 +178,7 @@ void Recipient::updateAccount(vector<Recipient>& datarecipient, int index)
 {
 
 	char c = 'y';
-	while (c=='y')
+	while (c == 'y')
 	{
 		cout << "Enter number to updata \n 1-Password  \n 2-Age \n 3-Hospital \n 4-Your Doctor \n 5-Done \n";
 		int choice;
@@ -216,7 +229,7 @@ void Recipient::updateAccount(vector<Recipient>& datarecipient, int index)
 
 		cout << "Do you want to make anthor update ? (y/n) \n";
 		cin >> c;
-		cout << " \n-----------------------------\n"; 
+		cout << " \n-----------------------------\n";
 	}
 
 	cout << "update successful \n";
@@ -225,7 +238,7 @@ void Recipient::updateAccount(vector<Recipient>& datarecipient, int index)
 	// Wrong (remind her/ask why)
 	//FileManager file; 
 	//file.writeRecipient(datarecipient);
-	
+
 }
 
 void Recipient::deleteAccount(vector<Recipient>& datarecipient, int index)
