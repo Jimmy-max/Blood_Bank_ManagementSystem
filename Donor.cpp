@@ -210,7 +210,7 @@ void Donor::updateAccount(vector<Donor>& dataDonar, int index)
 				}
 				else
 				{
-					if (year < 60 && year > 17)
+					if (newage < 60 && newage > 17)
 					{
 						dataDonar[index].age = newage ;
 						break;
