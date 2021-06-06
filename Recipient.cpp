@@ -382,14 +382,14 @@ void Recipient::updateAccount(vector<Recipient>& datarecipient, int index)
 		cin >> c;
 		do
 		{
-			if (c == "y" || c == "n")
+			if (c == 'y' || c == 'n')
 			{
 				break;
 			}
 			else
 			{
 				cout << "     error,not available data pleas try again ?" << endl;
-				cout << "please enter your gender (female / male) " << endl;
+				cout << "please enter your gender (y / n) " << endl;
 				cin >> c;
 			}
 		} while (true);
