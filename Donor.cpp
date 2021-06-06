@@ -254,7 +254,7 @@ int Donor::login(vector<Donor>& dataDonar)
 void Donor::updateAccount(vector<Donor>& dataDonar, int index)
 {
 	char c = 'y';
-	while (true)
+	while (c = 'y')
 	{
 		cout << "Enter number to update \n 1-Password  \n 2-Age \n 3-Diseases that you suffer from \n 4-Other diseases or take any medicine \n 5-Date latest donation  \n 6-Done \n";
 		int choice;
@@ -376,10 +376,20 @@ void Donor::updateAccount(vector<Donor>& dataDonar, int index)
 
 		cout << "Do you want to make anthor update ? (y/n) \n";
 		cin >> c;
-		if (c=='n')
+		do
 		{
-			break;
-		}
+			if (c == "y" || c == "n")
+			{
+				break;
+			}
+			else
+			{
+				cout << "     error,not available data pleas try again ?" << endl;
+				cout << "please enter your gender (female / male) " << endl;
+				cin >> c;
+			}
+		} while (true);
+		
 		cout << " \n-----------------------------\n";
 	}
 
@@ -390,6 +400,8 @@ void Donor::updateAccount(vector<Donor>& dataDonar, int index)
 void Donor::deleteAccount(vector<Donor>& dataDonar, int index)
 {
 	dataDonar.erase(dataDonar.begin() + index);
+	cout << "delete successful \n";
+	cout << "-----------------------------\n";
 }
 
 void Donor::donationRequest(vector<Donor>& donor, int index, vector<Donor>& donations) {
