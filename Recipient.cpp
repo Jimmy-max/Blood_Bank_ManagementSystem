@@ -121,9 +121,9 @@ int Recipient::login(vector<Recipient>& datarecipient)
 	printf("please enter your id \n");
 	cin >> x;
 	int l, r, mid;
-	l = idxl;
+	l = datarecipient[idxl].id;
 	idxr = (datarecipient.size() - 1);
-	r = idxr;
+	r = datarecipient[idxr].id;
 	while (l < r)
 	{
 		idx = idxl + ((idxr - idxl) / 2);
@@ -175,13 +175,21 @@ int Recipient::login(vector<Recipient>& datarecipient)
 	{
 		printf("this id is not found \n");
 	}
-	return idx;
+	if (flag2)
+	{
+		return idx;
+	}
+	else
+	{
+		return -1;
+	}
 }
 
 void Recipient::displayBloodData(vector<Donor>& donation) {
-	map<string, int> m;
-	map<string, stack<string>> m2;
+	map<string, int> mQuantity;
+	map<string, stack<string>> mDates;
 	map<string, int>::iterator itr;
+
 	for (size_t i = 0; i < donation.size(); i++)
 	{
 		if (calculateExpiryDate(donation[i].date_latest_donation) == "0")
@@ -189,16 +197,16 @@ void Recipient::displayBloodData(vector<Donor>& donation) {
 			donation.erase(donation.begin()+i);
 			continue;
 		}
-		m[donation[i].blood_type] += 1;
-		m2[donation[i].blood_type].push(donation[i].date_latest_donation);
+		mQuantity[donation[i].blood_type] += 1;
+		mDates[donation[i].blood_type].push(donation[i].date_latest_donation);
 	}
-	for (itr = m.begin(); itr != m.end(); ++itr)
+	for (itr = mQuantity.begin(); itr != mQuantity.end(); ++itr)
 	{
 		cout << "Type: " << itr->first << "  Quantity: " << itr->second << '\n';
-		while (!m2[itr->first].empty())
+		while (!mDates[itr->first].empty())
 		{
-			cout << "Received Date: " << m2[itr->first].top() << "  Expiry Date : " << calculateExpiryDate(m2[itr->first].top()) << endl;
-			m2[itr->first].pop();
+			cout << "Received Date: " << mDates[itr->first].top() << "  Expiry Date : " << calculateExpiryDate(mDates[itr->first].top()) << endl;
+			mDates[itr->first].pop();
 		}
 		cout << endl;
 
@@ -248,17 +256,17 @@ void Recipient::isBloodAvailable(vector<Donor>& donation, int index, vector<Reci
 	}
 	if (isBloodAvailable)
 	{
-		cout << "Your Blood type is Available : " << recipient[index].blood_type << endl;
+		cout << "Your Blood type is Available : " << recipient[index].blood_type << '\n' << endl;
 	}
 	else
 	{
-		cout << "Your Blood type is Unavailable : " << recipient[index].blood_type << endl;
+		cout << "Your Blood type is Unavailable : " << recipient[index].blood_type << '\n' << endl;
 	}
 }
 
 void Recipient::requestAndConfirm(vector<Donor>& donation) {
-	map<string, int> m;
-	map<string, stack<string>> m2;
+	map<string, int> mQuantity;
+	map<string, stack<string>> mDates;
 	map<string, int>::iterator itr;
 	for (size_t i = 0; i < donation.size(); i++)
 	{
@@ -267,18 +275,17 @@ void Recipient::requestAndConfirm(vector<Donor>& donation) {
 			donation.erase(donation.begin() + i);
 			continue;
 		}
-		m[donation[i].blood_type] += 1;
-		m2[donation[i].blood_type].push(donation[i].date_latest_donation);
+		mQuantity[donation[i].blood_type] += 1;
+		mDates[donation[i].blood_type].push(donation[i].date_latest_donation);
 	}
 	
 	while (true)
 	{
 		cout << "Enter Blood Type: "; string bloodType; cin >> bloodType;
-		if (m[bloodType]) {
+		if (mQuantity[bloodType]) {
 			cout << "Enter Quantity: "; int quantity; cin >> quantity;
 
-
-			if (m[bloodType] >= quantity) {
+			if (mQuantity[bloodType] >= quantity) {
 				for (size_t i = 0; i < donation.size(); i++)
 				{
 					if (quantity == 0)
@@ -291,11 +298,11 @@ void Recipient::requestAndConfirm(vector<Donor>& donation) {
 						quantity--;
 					}
 				}
-				cout << "Your request has been confirmed" << endl;
+				cout << "Your request has been confirmed" << '\n' << endl;
 				break;
 			}
 			else {
-				cout << "Quantity is not Available" << endl;
+				cout << "Quantity is not Available" << '\n' << endl;
 			}
 		}
 		else

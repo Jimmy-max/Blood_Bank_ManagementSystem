@@ -45,11 +45,11 @@ void Donor::reg()
 		}
 	} while (m != false);
 
-	cout << "pleas enter your password " << endl;
+	cout << "please enter your password " << endl;
 	cin >> password;
 
 
-	cout << "pleas enter your age (The donor must be between 17 and 60 years old)" << endl;
+	cout << "please enter your age (The donor must be between 17 and 60 years old)" << endl;
 	int year;
 	int old = true;
 	while (true)
@@ -78,7 +78,7 @@ void Donor::reg()
 		}
 	}
 
-	cout << "pleas enter your gender (female / male) " << endl;
+	cout << "please enter your gender (female / male) " << endl;
 	string g;
 	cin >> g;
 	string male;
@@ -95,7 +95,7 @@ void Donor::reg()
 		else 
 		{
 			cout << "     error,not available data pleas try again ?" << endl;
-			cout << "pleas enter your gender (female / male) " << endl;
+			cout << "please enter your gender (female / male) " << endl;
 			cin >> g;
 		}
 	} while (count != false);
@@ -149,7 +149,7 @@ void Donor::reg()
 		{
 			cout << "Please enter this disease here " << endl;
 			cin >> other;
-			cout << "pleas enter your date latest donation,like :day/month/year " << endl;
+			cout << "pleas enter your date latest donation,like :year-month-day" << endl;
 			cin.ignore();
 			getline(cin, date_latest_donation);
 			t = false;
@@ -158,7 +158,7 @@ void Donor::reg()
 		else if (f == 2)
 		{
 			other = "No";
-			cout << "pleas enter your date latest donation ,like :day/month/year" << endl;
+			cout << "pleas enter your date latest donation ,like :year-month-day" << endl;
 			cin.ignore();
 			getline(cin, date_latest_donation);
 			t = false;
@@ -186,9 +186,9 @@ int Donor::login(vector<Donor>& dataDonar)
 	printf("please enter your id \n");
 	scanf("%d", &x);
 	int l, r, mid;
-	l = idxl;
+	l = dataDonar[idxl].id;
 	idxr = (dataDonar.size()-1);
-	r = idxr;
+	r = dataDonar[idxr].id;
 	while (l < r)
 	{
 		idx = idxl + ((idxr - idxl) / 2);
@@ -240,14 +240,23 @@ int Donor::login(vector<Donor>& dataDonar)
 	{
 		printf("this id is not found \n");
 	}
-	return idx;
+	if (flag2)
+	{
+		return idx;
+	}
+	else
+	{
+		return -1;
+	}
+	
 }
+
 void Donor::updateAccount(vector<Donor>& dataDonar, int index)
 {
 	char c = 'y';
-	while (c == 'y')
+	while (true)
 	{
-		cout << "Enter number to updata \n 1-Password  \n 2-Age \n 3-Diseases that you suffer from \n 4-Other diseases or take any medicine \n 5-Date latest donation  \n 6-Done \n";
+		cout << "Enter number to update \n 1-Password  \n 2-Age \n 3-Diseases that you suffer from \n 4-Other diseases or take any medicine \n 5-Date latest donation  \n 6-Done \n";
 		int choice;
 		cin >> choice;
 		cout << " \n-----------------------------\n";
@@ -348,7 +357,7 @@ void Donor::updateAccount(vector<Donor>& dataDonar, int index)
 		}
 		else if (choice == 5)
 		{
-			cout << "pleas enter your date latest donation ,like :day/month/year" << endl;
+			cout << "pleas enter your date latest donation ,like :year-month-day" << endl;
 			string date_latest_donation; 
 			cin.ignore();
 			getline(cin, date_latest_donation);
@@ -367,12 +376,17 @@ void Donor::updateAccount(vector<Donor>& dataDonar, int index)
 
 		cout << "Do you want to make anthor update ? (y/n) \n";
 		cin >> c;
+		if (c=='n')
+		{
+			break;
+		}
 		cout << " \n-----------------------------\n";
 	}
 
 	cout << "update successful \n";
 	cout << "-----------------------------\n";
 }
+
 void Donor::deleteAccount(vector<Donor>& dataDonar, int index)
 {
 	dataDonar.erase(dataDonar.begin() + index);
