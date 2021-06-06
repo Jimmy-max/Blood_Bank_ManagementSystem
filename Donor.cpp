@@ -385,7 +385,7 @@ void Donor::updateAccount(vector<Donor>& dataDonar, int index)
 			else
 			{
 				cout << "     error,not available data pleas try again ?" << endl;
-				cout << "please enter your gender (y / n) " << endl;
+				cout << "Do you want to make anthor update ? (y/n) " << endl;
 				cin >> c;
 			}
 		} while (true);
