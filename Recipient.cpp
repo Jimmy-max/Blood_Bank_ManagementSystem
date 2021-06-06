@@ -18,7 +18,8 @@ Recipient::Recipient() {
 
 }
 
-void Recipient::reg() {
+void Recipient ::reg() 
+{
 
 	cout << "pleas enter your id (It should be a number)" << endl;
 	cin >> id;
@@ -108,7 +109,74 @@ void Recipient::reg() {
 	cin >> doc_of_case;
 }
 
+int Recipient::login(vector<Recipient>& datarecipient)
+{
+	int x; // to take the id from the user.
+	string p; // password.
+	int idx = 0; // to save the index of the user.
+	int idxl = 0, idxr = 0;
+	bool flag = 0;
+	bool flag2 = 0;
+	sort(datarecipient.begin(), datarecipient.end(), [](const Recipient& lhs, const Recipient& rhs) {return lhs.id < rhs.id; });
+	printf("please enter your id \n");
+	cin >> x;
+	int l, r, mid;
+	l = idxl;
+	idxr = (datarecipient.size() - 1);
+	r = idxr;
+	while (l < r)
+	{
+		idx = idxl + ((idxr - idxl) / 2);
+		mid = datarecipient[idx].id;
+		if (mid == x)
+		{
+			flag = 1;
+			break;
+		}
+		else if (x == datarecipient[idxl].id)
+		{
+			flag = 1;
+			idx = idxl;
+			break;
+		}
+		else if (x == datarecipient[idxr].id)
+		{
+			flag = 1;
+			idx = idxr;
+			break;
+		}
+		else if (x < mid)
+		{
 
+			r = datarecipient[idx - 1].id;
+			idxr = idx - 1;
+
+		}
+		else if (x > mid)
+		{
+			l = datarecipient[idx + 1].id;
+		}  idxl = idx + 1;
+	}
+	if (flag) // if the id have been found.
+	{
+		printf("please enter your password \n");
+		cin >> p;
+		if (p == datarecipient[idx].password)
+		{
+			printf("welcome to your account sir \n");
+			flag2 = 1;
+		}
+		else // password doesn't match.
+		{
+			printf("Wrong password \n");
+		}
+	}
+	else // if the id doesn't found.
+	{
+		printf("this id is not found \n");
+	}
+	return idx;
+}
 
 void Recipient::displayBloodData(vector<Donor>& donation) {
 	map<string, int> m;

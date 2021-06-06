@@ -1,9 +1,11 @@
 #include "Donor.h"
 #include "FileManager.h"
 #include <iostream>
+#include <algorithm>
 #pragma warning(disable : 4996)
 
 using namespace std;
+
 
 Donor::Donor() {
 
@@ -172,9 +174,73 @@ void Donor::reg()
 	
 }
 
-void Donor::login()
+int Donor::login(vector<Donor>& dataDonar)
 {
+	int x; // to take the id from the user.
+	string p; // password.
+	int idx=0; // to save the index of the user.
+	int idxl=0, idxr=0;
+	bool flag = 0;
+	bool flag2 = 0;
+	sort(dataDonar.begin(), dataDonar.end(), [](const Donor& lhs, const Donor& rhs) {return lhs.id < rhs.id; });
+	printf("please enter your id \n");
+	scanf("%d", &x);
+	int l, r, mid;
+	l = idxl;
+	idxr = (dataDonar.size()-1);
+	r = idxr;
+	while (l < r)
+	{
+		idx = idxl + ((idxr - idxl) / 2);
+		mid = dataDonar[idx].id;
+		if (mid == x)
+		{
+			flag = 1;
+			break;
+		}
+		else if (x == dataDonar[idxl].id)
+		{
+			flag = 1;
+			idx = idxl;
+			break;
+		}
+		else if (x == dataDonar[idxr].id)
+		{
+			flag = 1;
+			idx = idxr;
+				break;
+		}
+		else if (x < mid)
+		{
 
+			r = dataDonar[idx - 1].id;
+			idxr = idx - 1;
+
+		}
+		else if (x > mid)
+		{
+			l = dataDonar[idx+1].id;
+		}  idxl = idx + 1;
+	}
+	if (flag) // if the id have been found.
+	{
+		printf("please enter your password \n");
+		cin >> p;
+		if (p == dataDonar[idx].password)
+		{
+			printf("welcome to your account sir \n");
+				flag2 = 1;
+		}
+		else // password doesn't match.
+		{
+			printf("Wrong password \n");
+		}
+	}
+	else // if the id doesn't found.
+	{
+		printf("this id is not found \n");
+	}
+	return idx;
 }
 void Donor::updateAccount(vector<Donor>& dataDonar, int index)
 {
@@ -210,7 +276,7 @@ void Donor::updateAccount(vector<Donor>& dataDonar, int index)
 				}
 				else
 				{
-					if (year < 60 && year > 17)
+					if (newage < 60 && newage > 17)
 					{
 						dataDonar[index].age = newage ;
 						break;

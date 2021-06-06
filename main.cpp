@@ -4,7 +4,6 @@
 #include <chrono>
 #include <iomanip>
 #pragma warning(disable : 4996)
-
 using namespace std;
 
 int main() {
@@ -40,6 +39,8 @@ int main() {
 		{
 		    case 1:               // login
 			{ 
+				Donor::login(vDonor);
+
 				cout << "        You have successfully logged in        " << endl;
 		        cout << "       ###############################################################################################      " << endl;
 		        break;  
