@@ -4,6 +4,7 @@
 #include <chrono>
 #include <iomanip>
 #include <conio.h>
+#include <windows.h>
 #pragma warning(disable : 4996)
 
 #include <tabulate/table.hpp>
@@ -60,6 +61,8 @@ int main() {
 	{
 		cout << mainPage << "\n  --> ";
 		int choice; cin >> choice;
+		User::clear_screen(' ');
+
 		// main choices
 		if (choice == 1)
 		{
@@ -67,11 +70,14 @@ int main() {
 			{
 				cout << loginPage << "\n  --> ";
 				int choice; cin >> choice;
+				User::clear_screen(' ');
+
 				int index = -1;
 				if (choice == 1)
 				{
 					// Donor Body
 					index = Donor::login(vDonor);
+
 					while (index !=-1)
 					{
 						Table donorPage;
@@ -83,6 +89,7 @@ int main() {
 						cout << "  To make your donation request ,please press : 3" << endl;
 						cout << "  To logout ,please press : 4\n  --> ";
 						int choice; cin >> choice;
+						User::clear_screen(' ');
 						if (choice == 1)
 						{
 							Donor::updateAccount(vDonor, index);
@@ -131,6 +138,7 @@ int main() {
 						cout << "  To request and Confirm ,please press : 5" << endl;
 						cout << "  To logout ,please press : 6\n  --> ";
 						int choice; cin >> choice;
+						User::clear_screen(' ');
 						if (choice == 1)
 						{
 							Recipient::updateAccount(vRecipient, index);
@@ -172,6 +180,7 @@ int main() {
 				}
 				else if (choice == 3)
 				{
+					User::clear_screen(' ');
 					break;
 				}
 				else 
@@ -187,6 +196,7 @@ int main() {
 			{
 				cout << registrationPage << "\n  --> ";
 				int choice; cin >> choice;
+				User::clear_screen(' ');
 				if (choice == 1)
 				{
 					Table RegistrationPage;
@@ -223,6 +233,7 @@ int main() {
 				}
 				else if (choice == 3)
 				{
+					User::clear_screen(' ');
 					break;
 				}
 				else
@@ -234,6 +245,7 @@ int main() {
 
 		else if (choice == 3)
 		{
+			User::clear_screen(' ');
 			cout << exitPage;
 			break;
 		}
@@ -252,6 +264,7 @@ int main() {
 	file.writeRecipient(vRecipient);
 	file.writeDonor(vDonor);
 	file.writeDonations(vDonations);
+	return 0;
 }
 
 

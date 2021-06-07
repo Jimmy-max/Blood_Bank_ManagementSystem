@@ -18,6 +18,8 @@ public:
 	string blood_type;
 
 	static bool Email_check(string); // validate Email
+
+	static void clear_screen(char fill = ' ');
 	~User();// destructor
 };
 
