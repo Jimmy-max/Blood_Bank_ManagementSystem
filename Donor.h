@@ -16,6 +16,7 @@ public:
 	string date_latest_donation;
 
 	//functions - methods
+	bool date_check(string); // validate Email
 	void reg(); // register
 	static int login(vector<Donor>& dataDonar);
 	static void updateAccount(vector<Donor>& dataDonar, int index);

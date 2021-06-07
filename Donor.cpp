@@ -13,6 +13,12 @@ Donor::Donor() {
 
 }
 
+bool Donor::date_check(string date)
+{
+	const regex pattern("(\\d+)(\\-)(\\d+)(\\-)(\\d+)");
+	return regex_match(date, pattern);
+};
+
 void Donor::reg()
 {
 	cout << "\n  Please enter your id\n  It should be a number : ";
@@ -179,6 +185,7 @@ void Donor::reg()
 		}
 
 	} while (k != false);
+
 	int t = true;
 	do
 	{
@@ -191,8 +198,23 @@ void Donor::reg()
 			cout << "\n  Please enter this disease here : ";
 			cin >> other;
 			cout << "\n  Please enter your date latest donation\n  Like :Year-Month-Day : ";
-			cin.ignore();
-			getline(cin, date_latest_donation);
+			string d;
+			cin >> d;
+			int l = true;
+			do
+			{
+				if (date_check(d)) {
+					cout << "Your date of latest donation is valid" << endl;
+					date_latest_donation = d;
+					l = false;
+					break;
+				}
+
+				else {
+					cout << "Your date of latest donation is invalid , please try again " << endl;
+					cin >> d;
+				}
+			} while (l != false);
 			t = false;
 
 			break;
@@ -201,8 +223,23 @@ void Donor::reg()
 		{
 			other = "No";
 			cout << "\n  Please enter your date latest donation\n  Like :year-month-day : ";
-			cin.ignore();
-			getline(cin, date_latest_donation);
+			string d;
+			cin >> d;
+			int l = true;
+			do
+			{
+				if (date_check(d)) {
+					cout << "Your date of latest donation is valid" << endl;
+					date_latest_donation = d;
+					l = false;
+					break;
+				}
+
+				else {
+					cout << "Your date of latest donation is invalid , please try again " << endl;
+					cin >> d;
+				}
+			} while (l != false);
 			t = false;
 
 			break;
@@ -218,7 +255,7 @@ void Donor::reg()
 
 		}
 	} while (t != false);
-	
+
 }
 
 int Donor::login(vector<Donor>& dataDonar)
