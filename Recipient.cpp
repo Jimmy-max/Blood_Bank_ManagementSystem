@@ -7,6 +7,8 @@
 #include <iterator>
 #include <stack>
 #include <sstream>
+#include <tabulate/table.hpp>
+using namespace tabulate;
 #pragma warning(disable : 4996)
 
 
@@ -20,51 +22,101 @@ Recipient::Recipient() {
 
 void Recipient ::reg() 
 {
-
-	cout << "pleas enter your id (It should be a number)" << endl;
+	cout << "\n  Please enter your id\n  It should be a number : ";
 	cin >> id;
 	while (cin.fail())
 	{
-		cout << "     ERROR ,Please enter an ID using numbers only" << endl;
+		Table error;
+		error.add_row({ "ERROR ,Please enter an ID using numbers only" });
+		error.format().font_color(Color::red).border("").corner("").padding_left(2);
+		cout << error << endl;
+
 		cin.clear();
 		cin.ignore(256, '\n');
+		cout << "\n  Another One --> ";
 		cin >> id;
 	}
-	cout << "pleas enter your name " << endl;
+
+	Table valid;
+	valid.add_row({ "It is valid" });
+	valid.format().font_color(Color::green).border("").corner("").padding_left(2);
+	cout << valid << endl;
+	
+
+	cout << "\n  Please enter your name : ";
 	cin.ignore();
 	getline(cin, name);
 
 	string str;
 	int m = true;
-	cout << "Enter your Email like : user_name@gmail.com " << endl;
+	cout << "\n  Enter your Email \n  like : user_name@gmail.com : ";
 	cin >> str;
 	do
 	{
 		if (Email_check(str)) {
-			cout << "Your Email is valid" << endl;
+
+			Table valid;
+			valid.add_row({ "It is valid" });
+			valid.format().font_color(Color::green).border("").corner("").padding_left(2);
+			cout << valid << endl;
+
 			mail = str;
 			m = false;
 			break;
 		}
 
 		else {
-			cout << "Your Email is invalid , please try again " << endl;
+
+			Table error;
+			error.add_row({ "Your Email is invalid , please try again" });
+			error.format().font_color(Color::red).border("").corner("").padding_left(2);
+			cout << error << endl;
+			cout << "\n  Another One --> ";
 			cin >> str;
 		}
 	} while (m != false);
 
-	cout << "pleas enter your password " << endl;
+	cout << "\n  Please enter your password : ";
 	cin >> password;
-	cout << "pleas enter your age " << endl;
-	cin >> age;
-	while (cin.fail())
+
+
+	cout << "\n  Please enter your age \n  The donor must be between 17 and 60";
+	int year;
+	int old = true;
+	while (true)
 	{
-		cout << "     ERROR ,Please enter age using numbers only" << endl;
-		cin.clear();
-		cin.ignore(256, '\n');
-		cin >> age;
+		cout << " \n  --> ";
+		cin >> year;
+		if (cin.fail())
+		{
+			Table error;
+			error.add_row({ "ERROR ,Please enter age using numbers only" });
+			error.format().font_color(Color::red).border("").corner("").padding_left(2);
+			cout << error << endl;
+			cin.clear();
+			cin.ignore(256, '\n');
+			continue;
+		}
+		else
+		{
+			if (year < 60 && year > 17)
+			{
+				age = year;
+				old = false;
+				break;
+			}
+			else
+			{
+				Table error;
+				error.add_row({ "ERROR ,Please enter age between 17 and 60" });
+				error.format().font_color(Color::red).border("").corner("").padding_left(2);
+				cout << error << endl;
+				continue;
+			}
+		}
 	}
-	cout << "pleas enter your gender (female / male) " << endl;
+
+	cout << "\n  Please enter your gender (female / male) \n  -->  ";
 	string g;
 	cin >> g;
 	string male;
@@ -72,19 +124,24 @@ void Recipient ::reg()
 	int count = true;
 	do
 	{
-		if (g == "female" || g == "male") {
+		if (g == "female" || g == "male")
+		{
 			gender = g;
 			count = false;
 			break;
 		}
 		else
 		{
-			cout << "     error,not available data pleas try again ?" << endl;
-			cout << "pleas enter your gender (female / male) " << endl;
+			Table error;
+			error.add_row({ "Error,not available data pleas try again ?" });
+			error.format().font_color(Color::red).border("").corner("").padding_left(2);
+			cout << error << endl;
+			cout << "\n  Please enter your gender (female / male) \n  --> : ";
 			cin >> g;
 		}
 	} while (count != false);
-	cout << "Enter your blood type, please(-O, +O,- A, +A,-B,+B,+AB,-AB)" << endl;
+
+	cout << "\n  Enter your blood type \n  Please(-O, +O,- A, +A,-B,+B,+AB,-AB) : ";
 	string B;
 	cin >> B;
 	int y = true;
@@ -98,14 +155,19 @@ void Recipient ::reg()
 		}
 		else
 		{
-			cout << "     Incorrect blood type, please try again" << endl;
+			Table error;
+			error.add_row({ "Incorrect blood type, please try again" });
+			error.format().font_color(Color::red).border("").corner("").padding_left(2);
+			cout << error << endl;
+			cout << "  --> ";
 			cin >> B;
 		}
 	} while (y != false);
+	
 
-	cout << "Please enter the name of the hospital" << endl;
+	cout << "\n  Please enter the name of the hospital : ";
 	cin >> hospital;
-	cout << "Please enter the name of the Doctor responsible for the case " << endl;
+	cout << "\n  Please enter the name of the Doctor \n  responsible for the case : ";
 	cin >> doc_of_case;
 }
 
@@ -118,7 +180,7 @@ int Recipient::login(vector<Recipient>& datarecipient)
 	bool flag = 0;
 	bool flag2 = 0;
 	sort(datarecipient.begin(), datarecipient.end(), [](const Recipient& lhs, const Recipient& rhs) {return lhs.id < rhs.id; });
-	printf("please enter your id \n");
+	printf("  Please enter your id : ");
 	cin >> x;
 	int l, r, mid;
 	l = datarecipient[idxl].id;
@@ -159,21 +221,30 @@ int Recipient::login(vector<Recipient>& datarecipient)
 	}
 	if (flag) // if the id have been found.
 	{
-		printf("please enter your password \n");
+		printf("  Please enter your password : ");
 		cin >> p;
 		if (p == datarecipient[idx].password)
 		{
-			printf("welcome to your account sir \n");
+			Table valid;
+			valid.add_row({ "welcome to your account sir" });
+			valid.format().font_color(Color::green).border("").corner("").padding_left(2);
+			cout << valid << endl;
 			flag2 = 1;
 		}
 		else // password doesn't match.
 		{
-			printf("Wrong password \n");
+			Table error;
+			error.add_row({ "Wrong password" });
+			error.format().font_color(Color::red).border("").corner("").padding_left(2);
+			cout << error << endl;
 		}
 	}
 	else // if the id doesn't found.
 	{
-		printf("this id is not found \n");
+		Table error;
+		error.add_row({ "This id is not found" });
+		error.format().font_color(Color::red).border("").corner("").padding_left(2);
+		cout << error << endl;
 	}
 	if (flag2)
 	{
@@ -202,10 +273,10 @@ void Recipient::displayBloodData(vector<Donor>& donation) {
 	}
 	for (itr = mQuantity.begin(); itr != mQuantity.end(); ++itr)
 	{
-		cout << "Type: " << itr->first << "  Quantity: " << itr->second << '\n';
+		cout << "  Type: " << itr->first << "  Quantity: " << itr->second << '\n';
 		while (!mDates[itr->first].empty())
 		{
-			cout << "Received Date: " << mDates[itr->first].top() << "  Expiry Date : " << calculateExpiryDate(mDates[itr->first].top()) << endl;
+			cout << "  Received : " << mDates[itr->first].top() << "  Expiry : " << calculateExpiryDate(mDates[itr->first].top()) << endl;
 			mDates[itr->first].pop();
 		}
 		cout << endl;
@@ -256,11 +327,19 @@ void Recipient::isBloodAvailable(vector<Donor>& donation, int index, vector<Reci
 	}
 	if (isBloodAvailable)
 	{
-		cout << "Your Blood type is Available : " << recipient[index].blood_type << '\n' << endl;
+		Table valid;
+		valid.add_row({ "Lucky ^_^" });
+		valid.format().font_color(Color::green).border("").corner("").padding_left(2);
+		cout << valid << endl;
+		cout << "  Your Blood type is Available : " << recipient[index].blood_type << '\n' << endl;
 	}
 	else
 	{
-		cout << "Your Blood type is Unavailable : " << recipient[index].blood_type << '\n' << endl;
+		Table error;
+		error.add_row({ "Sorry" });
+		error.format().font_color(Color::red).border("").corner("").padding_left(2);
+		cout << error << endl;
+		cout << "  Your Blood type is Unavailable : " << recipient[index].blood_type << '\n' << endl;
 	}
 }
 
@@ -281,9 +360,9 @@ void Recipient::requestAndConfirm(vector<Donor>& donation) {
 	
 	while (true)
 	{
-		cout << "Enter Blood Type: "; string bloodType; cin >> bloodType;
+		cout << "  Enter Blood Type: "; string bloodType; cin >> bloodType;
 		if (mQuantity[bloodType]) {
-			cout << "Enter Quantity: "; int quantity; cin >> quantity;
+			cout << "  Enter Quantity: "; int quantity; cin >> quantity;
 
 			if (mQuantity[bloodType] >= quantity) {
 				for (size_t i = 0; i < donation.size(); i++)
@@ -298,16 +377,25 @@ void Recipient::requestAndConfirm(vector<Donor>& donation) {
 						quantity--;
 					}
 				}
-				cout << "Your request has been confirmed" << '\n' << endl;
+				Table valid;
+				valid.add_row({ "Your request has been confirmed" });
+				valid.format().font_color(Color::green).border("").corner("").padding_left(2);
+				cout << valid << endl;
 				break;
 			}
 			else {
-				cout << "Quantity is not Available" << '\n' << endl;
+				Table error;
+				error.add_row({ "Quantity is not Available" });
+				error.format().font_color(Color::red).border("").corner("").padding_left(2);
+				cout << error << endl;
 			}
 		}
 		else
 		{
-			cout << "Blood Type is not Available" << endl;
+			Table error;
+			error.add_row({ "Blood Type is not Available" });
+			error.format().font_color(Color::red).border("").corner("").padding_left(2);
+			cout << error << endl;
 		}
 	}
 	
@@ -324,13 +412,13 @@ void Recipient::updateAccount(vector<Recipient>& datarecipient, int index)
 	char c = 'y';
 	while (c == 'y')
 	{
-		cout << "Enter number to updata \n 1-Password  \n 2-Age \n 3-Hospital \n 4-Your Doctor \n 5-Done \n";
+		cout << "\n  Enter number to updata \n  1-Password  \n  2-Age  \n  3-Hospital  \n  4-Your Doctor  \n  5-Done  \n  --> ";
 		int choice;
 		cin >> choice;
 		cout << " \n-----------------------------\n";
 		if (choice == 1)
 		{
-			cout << "Enter your New password \n";
+			cout << "  Enter your New password \n  --> ";
 			string newpassword;
 			cin >> newpassword;
 			datarecipient[index].password = newpassword;
@@ -339,23 +427,27 @@ void Recipient::updateAccount(vector<Recipient>& datarecipient, int index)
 		}
 		else if (choice == 2)
 		{
-			cout << "Enter your New age \n";
+			cout << "  Enter your New age \n  --> ";
 			int newage;
 			cin >> newage;
 			while (cin.fail())
 			{
-				cout << "     ERROR ,Please enter age using numbers only" << endl;
+				Table error;
+				error.add_row({ "ERROR ,Please enter age using numbers only" });
+				error.format().font_color(Color::red).border("").corner("").padding_left(2);
+				cout << error << endl;
 				cin.clear();
 				cin.ignore(256, '\n');
+				cout << "  --> ";
 				cin >> newage ;
 			}
 			datarecipient[index].age = newage;
-			cout << " \n-----------------------------\n";
+			cout << " \n-----------------------------\n  --> ";
 		}
 		else if (choice == 3)
 		{
 
-			cout << "Enter your New Hospital \n";
+			cout << "  Enter your New Hospital \n  --> ";
 			string newhospital;
 			cin >> newhospital;
 			datarecipient[index].hospital = newhospital;
@@ -363,7 +455,7 @@ void Recipient::updateAccount(vector<Recipient>& datarecipient, int index)
 		}
 		else if (choice == 4)
 		{
-			cout << "Enter your New doctor \n";
+			cout << "  Enter your New doctor \n  --> ";
 			string newdector;
 			cin >> newdector;
 			datarecipient[index].doc_of_case = newdector;
@@ -375,15 +467,21 @@ void Recipient::updateAccount(vector<Recipient>& datarecipient, int index)
 		}
 		else
 		{
-			cout << "You enter wrong number";
+			Table error;
+			error.add_row({ "You enter wrong number" });
+			error.format().font_color(Color::red).border("").corner("").padding_left(2);
+			cout << error << endl;
 		}
 
-		cout << "Do you want to make anthor update ? (y/n) \n";
+		cout << "  Do you want to make anthor update ? (y/n) \n  --> ";
 		cin >> c;
 		cout << " \n-----------------------------\n";
 	}
 
-	cout << "update successful \n";
+	Table valid;
+	valid.add_row({ "Update successful" });
+	valid.format().font_color(Color::green).border("").corner("").padding_left(2);
+	cout << valid << endl;
 	cout << "-----------------------------\n";
 }
 
