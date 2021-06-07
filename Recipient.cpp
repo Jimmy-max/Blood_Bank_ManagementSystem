@@ -475,7 +475,22 @@ void Recipient::updateAccount(vector<Recipient>& datarecipient, int index)
 
 		cout << "  Do you want to make anthor update ? (y/n) \n  --> ";
 		cin >> c;
+		do
+		{
+			if (c == 'y' || c == 'n')
+			{
+				break;
+			}
+			else
+			{
+				cout << "     error,not available data pleas try again ?" << endl;
+				cout << "Do you want to make anthor update ? (y/n) " << endl;
+				cin >> c;
+			}
+		} while (true);
+
 		cout << " \n-----------------------------\n";
+
 	}
 
 	Table valid;
@@ -489,4 +504,6 @@ void Recipient::deleteAccount(vector<Recipient>& datarecipient, int index)
 {
 
 	datarecipient.erase(datarecipient.begin() + index);
+	cout << "delete successful \n";
+	cout << "-----------------------------\n";
 }
