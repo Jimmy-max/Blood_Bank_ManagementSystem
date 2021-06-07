@@ -109,6 +109,7 @@ int main() {
 						}
 						else if (choice == 4)
 						{
+							User::clear_screen(' ');
 							Table valid;
 							valid.add_row({ "Your logout is successfully" });
 							valid.format().font_color(Color::green).border("").corner("").padding_left(2);
@@ -124,13 +125,13 @@ int main() {
 				else if (choice == 2)
 				{
 					// Recipient Body
-					Table recipientPage;
-					recipientPage.add_row({ "Welcome in Recipient page" });
-					recipientPage[0].format().padding_top(1).padding_bottom(1).padding_right(12).padding_left(11).font_align(FontAlign::center).font_style({ FontStyle::bold }).font_background_color(Color::blue).border(" ").corner(" ");
-					cout << recipientPage << endl;
 					index = Recipient::login(vRecipient);
 					while (index!=-1)
 					{
+						Table recipientPage;
+						recipientPage.add_row({ "Welcome in Recipient page" });
+						recipientPage[0].format().padding_top(1).padding_bottom(1).padding_right(12).padding_left(11).font_align(FontAlign::center).font_style({ FontStyle::bold }).font_background_color(Color::blue).border(" ").corner(" ");
+						cout << recipientPage << endl;
 						cout << "\n  To update your account ,please press : 1" << endl;
 						cout << "  To delete your account ,please press : 2" << endl;
 						cout << "  To check if your Blood is Available press : 3" << endl;
@@ -145,7 +146,9 @@ int main() {
 						}
 						else if (choice == 2)
 						{
+
 							Recipient::deleteAccount(vRecipient, index);
+							User::clear_screen(' ');
 							Table valid;
 							valid.add_row({ "Your account is deleted" });
 							valid.format().font_color(Color::green).border("").corner("").padding_left(2);
@@ -208,6 +211,7 @@ int main() {
 					donor.reg();
 					vDonor.push_back(donor);
 
+					User::clear_screen(' ');
 					Table valid;
 					valid.add_row({ "Your registration is successfully" });
 					valid.format().font_color(Color::green).border("").corner("").padding_left(2);
@@ -226,6 +230,7 @@ int main() {
 					recipient.reg();
 					vRecipient.push_back(recipient);
 					
+					User::clear_screen(' ');
 					Table valid;
 					valid.add_row({ "Your registration is successfully" });
 					valid.format().font_color(Color::green).border("").corner("").padding_left(2);

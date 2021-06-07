@@ -225,6 +225,7 @@ int Recipient::login(vector<Recipient>& datarecipient)
 		cin >> p;
 		if (p == datarecipient[idx].password)
 		{
+			User::clear_screen(' ');
 			Table valid;
 			valid.add_row({ "welcome to your account sir" });
 			valid.format().font_color(Color::green).border("").corner("").padding_left(2);
@@ -360,6 +361,7 @@ void Recipient::requestAndConfirm(vector<Donor>& donation) {
 	
 	while (true)
 	{
+		User::clear_screen(' ');
 		cout << "  Enter Blood Type: "; string bloodType; cin >> bloodType;
 		if (mQuantity[bloodType]) {
 			cout << "  Enter Quantity: "; int quantity; cin >> quantity;
@@ -377,6 +379,7 @@ void Recipient::requestAndConfirm(vector<Donor>& donation) {
 						quantity--;
 					}
 				}
+				User::clear_screen(' ');
 				Table valid;
 				valid.add_row({ "Your request has been confirmed" });
 				valid.format().font_color(Color::green).border("").corner("").padding_left(2);
@@ -384,6 +387,7 @@ void Recipient::requestAndConfirm(vector<Donor>& donation) {
 				break;
 			}
 			else {
+				User::clear_screen(' ');
 				Table error;
 				error.add_row({ "Quantity is not Available" });
 				error.format().font_color(Color::red).border("").corner("").padding_left(2);
@@ -392,6 +396,7 @@ void Recipient::requestAndConfirm(vector<Donor>& donation) {
 		}
 		else
 		{
+			User::clear_screen(' ');
 			Table error;
 			error.add_row({ "Blood Type is not Available" });
 			error.format().font_color(Color::red).border("").corner("").padding_left(2);
@@ -492,7 +497,7 @@ void Recipient::updateAccount(vector<Recipient>& datarecipient, int index)
 		cout << " \n-----------------------------\n";
 
 	}
-
+	User::clear_screen(' ');
 	Table valid;
 	valid.add_row({ "Update successful" });
 	valid.format().font_color(Color::green).border("").corner("").padding_left(2);
@@ -504,6 +509,4 @@ void Recipient::deleteAccount(vector<Recipient>& datarecipient, int index)
 {
 
 	datarecipient.erase(datarecipient.begin() + index);
-	cout << "delete successful \n";
-	cout << "-----------------------------\n";
 }

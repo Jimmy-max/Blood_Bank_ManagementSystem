@@ -275,6 +275,7 @@ int Donor::login(vector<Donor>& dataDonar)
 		cin >> p;
 		if (p == dataDonar[idx].password)
 		{
+			User::clear_screen(' ');
 			Table valid;
 			valid.add_row({ "welcome to your account sir" });
 			valid.format().font_color(Color::green).border("").corner("").padding_left(2);
@@ -462,6 +463,7 @@ void Donor::updateAccount(vector<Donor>& dataDonar, int index)
 		
 		cout << " \n-----------------------------\n";
 	}
+	User::clear_screen(' ');
 	Table valid;
 	valid.add_row({ "Update successful" });
 	valid.format().font_color(Color::green).border("").corner("").padding_left(2);
@@ -472,11 +474,11 @@ void Donor::updateAccount(vector<Donor>& dataDonar, int index)
 void Donor::deleteAccount(vector<Donor>& dataDonar, int index)
 {
 	dataDonar.erase(dataDonar.begin() + index);
-	cout << "delete successful \n";
-	cout << "-----------------------------\n";
+	User::clear_screen(' ');
 }
 
 void Donor::donationRequest(vector<Donor>& donor, int index, vector<Donor>& donations) {
+	User::clear_screen(' ');
 	Table valid;
 	valid.add_row({ "Your donation is accepted" });
 	valid.format().font_color(Color::green).border("").corner("").padding_left(2);
