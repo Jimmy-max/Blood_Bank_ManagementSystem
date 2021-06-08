@@ -208,14 +208,19 @@ void Donor::reg()
 				int day = stoi(d.substr(8, 9));
 				if (date_check(d) && month <= 12 && day <= 30 && year <= 2021 && year > 1899) {
 
-						
-						cout << "Your date of latest donation is valid" << endl;
+						Table valid;
+						valid.add_row({ "Your date of latest donation is valid" });
+						valid.format().font_color(Color::green).border("").corner("").padding_left(2);
+						cout << valid << endl;
 						date_latest_donation = d;
 						l = false;
 						break;
 				}
 				else {
-					cout << "Your date of latest donation is invalid , please try again " << endl;
+					Table error;
+					error.add_row({ "Your date of latest donation is invalid\n  please try again" });
+					error.format().font_color(Color::red).border("").corner("").padding_left(2);
+					cout << error << endl << "  --> ";
 					cin >> d;
 				}
 			} while (l != false);
@@ -237,14 +242,20 @@ void Donor::reg()
 				int month = stoi(d.substr(5, 6));
 				int day = stoi(d.substr(8, 9));
 				if (date_check(d) && month <= 12 && day <= 30 && year <= 2021 && year > 1899) {
-					cout << "Your date of latest donation is valid" << endl;
+					Table valid;
+					valid.add_row({ "Your date of latest donation is valid" });
+					valid.format().font_color(Color::green).border("").corner("").padding_left(2);
+					cout << valid << endl;
 					date_latest_donation = d;
 					l = false;
 					break;
 				}
 
 				else {
-					cout << "Your date of latest donation is invalid , please try again " << endl;
+					Table error;
+					error.add_row({ "Your date of latest donation is invalid\n  Please try again" });
+					error.format().font_color(Color::green).border("").corner("").padding_left(2);
+					cout << error << endl << "  --> ";
 					
 					cin >> d;
 				}
