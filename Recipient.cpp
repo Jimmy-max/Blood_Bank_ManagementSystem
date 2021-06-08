@@ -194,19 +194,33 @@ int Recipient::login(vector<Recipient>& datarecipient)
 			cin >> p;
 			if (p == datarecipient[0].password)
 			{
-				cout << "welcome to your account " << datarecipient[0].name << endl;
+				User::clear_screen(' ');
+				Table passwordValid;
+				string s = "welcome to your account " + datarecipient[0].name;
+				passwordValid.add_row({ s });
+				passwordValid.format().font_color(Color::green).border("").corner("").padding_left(2);
+				cout << passwordValid << endl;
 				return 0;
 			}
 			else
 			{
 				while (true)
 				{
-					cout << "please re enter the right password Mr." << datarecipient[0].name << endl;
+					Table passwordInvalid;
+					string s = "please re enter the right password Mr." + datarecipient[0].name;
+					passwordInvalid.add_row({ s });
+					passwordInvalid.format().font_color(Color::red).border("").corner("").padding_left(2);
+					cout << passwordInvalid << endl;
 					cout << "Or enter ' B ' to back\n";
 					cin >> p;
 					if (p == datarecipient[0].password)
 					{
-						cout << "welcome to your account " << datarecipient[0].name << endl;
+						User::clear_screen(' ');
+						Table passwordValid;
+						string s = "welcome to your account " + datarecipient[0].name;
+						passwordValid.add_row({ s });
+						passwordValid.format().font_color(Color::green).border("").corner("").padding_left(2);
+						cout << passwordValid << endl;
 						return 0;
 					}
 					else if (p == "B")
@@ -219,29 +233,51 @@ int Recipient::login(vector<Recipient>& datarecipient)
 		{
 			while (true)
 			{
-				cout << "please re enter the right id sir" << endl;
-				cout << "Or enter ' -1 ' to back\n";
+				User::clear_screen(' ');
+				Table idReenter;
+				idReenter.add_row({ "please re enter the right id sir" });
+				idReenter.add_row({ "Or enter ' -1 ' to back" });
+				idReenter.format().font_color(Color::red).border("").corner("").padding_left(2);
+				cout << idReenter << endl;
 				cin >> x;
 
 				if (x == datarecipient[0].id)
 				{
-					cout << "please enter your password " << datarecipient[0].name << endl;;
+					Table passwordEnter;
+					string s = "please enter your password " + datarecipient[0].name;
+					passwordEnter.add_row({ s });
+					passwordEnter.format().font_color(Color::white).border("").corner("").padding_left(2);
+					cout << passwordEnter << endl;
 					cin >> p;
 					if (p == datarecipient[0].password)
 					{
-						cout << "welcome to your account " << datarecipient[0].name << endl;
+						User::clear_screen(' ');
+						Table passwordValid;
+						string s = "welcome to your account " + datarecipient[0].name;
+						passwordValid.add_row({ s });
+						passwordValid.format().font_color(Color::green).border("").corner("").padding_left(2);
+						cout << passwordValid << endl;
 						return 0;
 					}
 					else
 					{
 						while (true)
 						{
-							cout << "please re enter the right password Mr " << datarecipient[0].name << endl;
-							cout << "Or enter ' B ' to back\n";
+							Table passReenter;
+							string s = "please re enter the right password Mr " + datarecipient[0].name;
+							passReenter.add_row({ s });
+							passReenter.add_row({ "Or enter ' B ' to back" });
+							passReenter.format().font_color(Color::red).border("").corner("").padding_left(2);
+							cout << passReenter << endl;
 							cin >> p;
 							if (p == datarecipient[0].password)
 							{
-								cout << "welcome to your account " << datarecipient[0].name << endl;
+								User::clear_screen(' ');
+								Table passwordValid;
+								string s = "welcome to your account " + datarecipient[0].name;
+								passwordValid.add_row({ s });
+								passwordValid.format().font_color(Color::green).border("").corner("").padding_left(2);
+								cout << passwordValid << endl;
 								return 0;
 							}
 							else if (p == "B")
@@ -295,24 +331,46 @@ int Recipient::login(vector<Recipient>& datarecipient)
 	}
 	if (flag) // if the id have been found.
 	{
-		cout << "please enter your password Mr " << datarecipient[idx].name << endl;
+		Table passwordEnter;
+		string s = "Please enter your password Mr " + datarecipient[idx].name;
+		passwordEnter.add_row({ s });
+		passwordEnter.format().font_color(Color::white).border("").corner("").padding_left(2);
+		cout << passwordEnter << endl;
 		cin >> p;
 		if (p == datarecipient[idx].password)
 		{
-			cout << "welcome to your account Mr " << datarecipient[idx].name << endl;
+			User::clear_screen(' ');
+			Table passwordValid;
+			string s = "welcome to your account " + datarecipient[idx].name;
+			passwordValid.add_row({ s });
+			passwordValid.format().font_color(Color::green).border("").corner("").padding_left(2);
+			cout << passwordValid << endl;
 			flag2 = 1;
 		}
 		else // password doesn't match.
 		{
-			printf("Wrong password \n");
+			User::clear_screen(' ');
+			Table passwordInvalid;
+			passwordInvalid.add_row({ "Wrong password" });
+			passwordInvalid.format().font_color(Color::red).border("").corner("").padding_left(2);
+			cout << passwordInvalid << endl;
 			while (true)
 			{
-				cout << "please re enter the right password Mr " << datarecipient[idx].name << endl;
-				cout << "Or enter ' B ' to back\n";
+				Table passwordInvalid;
+				string s = "please re enter the right password Mr " + datarecipient[idx].name;
+				passwordInvalid.add_row({ s });
+				passwordInvalid.add_row({ "Or enter ' B ' to back" });
+				passwordInvalid.format().font_color(Color::red).border("").corner("").padding_left(2);
+				cout << passwordInvalid << endl;
 				cin >> p;
 				if (p == datarecipient[idx].password)
 				{
-					cout << "welcome to your account Mr " << datarecipient[idx].name << endl;
+					User::clear_screen(' ');
+					Table passwordValid;
+					string s = "welcome to your account Mr " + datarecipient[idx].name;
+					passwordValid.add_row({ s });
+					passwordValid.format().font_color(Color::green).border("").corner("").padding_left(2);
+					cout << passwordValid << endl;
 					return idx;
 				}
 				else if (p == "B")
@@ -323,16 +381,30 @@ int Recipient::login(vector<Recipient>& datarecipient)
 	}
 	else // if the id doesn't found.
 	{
-		printf("this id is not found please enter ' 1 ' to enter it again \n");
-		printf("Or enter ' -1 ' to back\n");
-		cin >> x;
-		if (x == 1)
+		User::clear_screen(' ');
+		Table idReenter;
+		idReenter.add_row({ "ID not found, please enter 1 to try again" });
+		idReenter.add_row({ "Or enter ' -1 ' to back" });
+		idReenter.format().font_color(Color::red).border("").corner("").padding_left(2);
+		cout << idReenter << endl;
+		while (cin >> x)
 		{
-			return Recipient::login(datarecipient);
-		}
-		else if (x == -1)
-		{
-			return -1;
+			if (x == 1)
+			{
+				return Recipient::login(datarecipient);
+			}
+			else if (x == -1)
+			{
+				return -1;
+			}
+			else {
+				Table idReenter;
+				idReenter.add_row({ "wrong input ,please enter 1 to try again" });
+				idReenter.add_row({ "Or enter ' -1 ' to back" });
+				idReenter.format().font_color(Color::red).border("").corner("").padding_left(2);
+				cout << idReenter << endl;
+				continue;
+			}
 		}
 
 

@@ -472,14 +472,24 @@ int Donor::login(vector<Donor>& dataDonar)
 		idReenter.add_row({ "Or enter ' -1 ' to back" });
 		idReenter.format().font_color(Color::red).border("").corner("").padding_left(2);
 		cout << idReenter << endl;
-		cin >> x;
-		if (x == 1)
+		while (cin >> x)
 		{
-			return Donor::login(dataDonar);
-		}
-		else if (x == -1)
-		{
-			return -1;
+			if (x == 1)
+			{
+				return Donor::login(dataDonar);
+			}
+			else if (x == -1)
+			{
+				return -1;
+			}
+			else {
+				Table idReenter;
+				idReenter.add_row({ "wrong input ,please enter 1 to try again" });
+				idReenter.add_row({ "Or enter ' -1 ' to back" });
+				idReenter.format().font_color(Color::red).border("").corner("").padding_left(2);
+				cout << idReenter << endl;
+				continue;
+			}
 		}
 
 
@@ -499,7 +509,7 @@ int Donor::login(vector<Donor>& dataDonar)
 void Donor::updateAccount(vector<Donor>& dataDonar, int index)
 {
 	char c = 'y';
-	while (c = 'y')
+	while (c == 'y')
 	{
 		cout << "\n  Enter number to update \n  1-Password  \n  2-Age \n  3-Diseases that you suffer from \n  4-Other diseases or take any medicine \n  5-Date latest donation  \n  6-Done \n  --> ";
 		int choice;
