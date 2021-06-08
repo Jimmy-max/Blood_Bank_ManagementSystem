@@ -15,7 +15,7 @@ Donor::Donor() {
 
 bool Donor::date_check(string date)
 {
-	const regex pattern("(\\d+)(\\-)(\\d+)(\\-)(\\d+)");
+	const regex pattern("(\\d\\d\\d\\d)(\\-)(\\d\\d)(\\-)(\\d\\d)");
 	return regex_match(date, pattern);
 };
 
