@@ -20,6 +20,12 @@ Recipient::Recipient() {
 
 }
 
+int Recipient::aski(char z)
+{
+	int m = z;
+	return m;
+}
+
 void Recipient ::reg() 
 {
 	cout << "\n  Please enter your id\n  It should be a number : ";
@@ -158,7 +164,9 @@ int Recipient::login(vector<Recipient>& datarecipient)
 
 
 {
-	int x; // to take the id from the user.
+	int x;// to take the id from the user.
+	int y = 0;
+	string s;
 	int check = 0;
 	string p; // password.
 	int idx = 0; // to save the index of the user.
@@ -167,7 +175,29 @@ int Recipient::login(vector<Recipient>& datarecipient)
 	bool flag2 = 0;
 	sort(datarecipient.begin(), datarecipient.end(), [](const Recipient& lhs, const Recipient& rhs) {return lhs.id < rhs.id; });
 	printf("please enter your id \n");
-	cin >> x;
+	cin >> s;
+	bool flag3 = true;
+	while (flag3)
+	{
+		for (int i = 0; i < s.size(); i++)
+		{
+			if ((Recipient::aski(s[i])) < 48 || (Recipient::aski(s[i])) > 57)
+			{
+				Table idReenter;
+				idReenter.add_row({ "please re enter the right id sir" });
+				idReenter.add_row({ "Or enter ' -1 ' to back" });
+				idReenter.format().font_color(Color::red).border("").corner("").padding_left(2);
+				cout << idReenter << endl;
+				cin >> s;
+				break;
+			}
+			else if (i == s.size() - 1) {
+				int y = stoi(s);
+				flag3 = false;
+				x = y;
+			}
+		}
+	}
 
 	if (datarecipient.size() == 1)
 	{
@@ -222,7 +252,29 @@ int Recipient::login(vector<Recipient>& datarecipient)
 				idReenter.add_row({ "Or enter ' -1 ' to back" });
 				idReenter.format().font_color(Color::red).border("").corner("").padding_left(2);
 				cout << idReenter << endl;
-				cin >> x;
+				cin >> s;
+				bool flag3 = true;
+				while (flag3)
+				{
+					for (int i = 0; i < s.size(); i++)
+					{
+						if ((Recipient::aski(s[i])) < 48 || (Recipient::aski(s[i])) > 57)
+						{
+							Table idReenter;
+							idReenter.add_row({ "please re enter the right id sir" });
+							idReenter.add_row({ "Or enter ' -1 ' to back" });
+							idReenter.format().font_color(Color::red).border("").corner("").padding_left(2);
+							cout << idReenter << endl;
+							cin >> s;
+							break;
+						}
+						else if (i == s.size() - 1) {
+							int y = stoi(s);
+							flag3 = false;
+							x = y;
+						}
+					}
+				}
 
 				if (x == datarecipient[0].id)
 				{
@@ -403,6 +455,7 @@ int Recipient::login(vector<Recipient>& datarecipient)
 	}
 
 }
+
 
 void Recipient::displayBloodData(vector<Donor>& donation) {
 	map<string, int> mQuantity;

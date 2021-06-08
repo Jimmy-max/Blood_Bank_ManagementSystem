@@ -19,6 +19,12 @@ bool Donor::date_check(string date)
 	return regex_match(date, pattern);
 };
 
+int Donor::aski(char z)
+{
+	int m = z;
+	return m;
+}
+
 void Donor::reg()
 {
 	
@@ -282,8 +288,9 @@ void Donor::reg()
 
 int Donor::login(vector<Donor>& dataDonar)
 {
-	
-	int x; // to take the id from the user.
+	int x;// to take the id from the user.
+	int y = 0;
+	string s;
 	int check = 0;
 	string p; // password.
 	int idx = 0; // to save the index of the user.
@@ -292,7 +299,29 @@ int Donor::login(vector<Donor>& dataDonar)
 	bool flag2 = 0;
 	sort(dataDonar.begin(), dataDonar.end(), [](const Donor& lhs, const Donor& rhs) {return lhs.id < rhs.id; });
 	printf("please enter your id \n");
-	cin >> x;
+	cin >> s;
+	bool flag3 = true;
+	while (flag3)
+	{
+		for (int i = 0; i < s.size(); i++)
+		{
+			if ((Donor::aski(s[i])) < 48 || (Donor::aski(s[i])) > 57)
+			{
+				Table idReenter;
+				idReenter.add_row({ "please re enter the right id sir" });
+				idReenter.add_row({ "Or enter ' -1 ' to back" });
+				idReenter.format().font_color(Color::red).border("").corner("").padding_left(2);
+				cout << idReenter << endl;
+				cin >> s;
+				break;
+			}
+			else if (i == s.size() - 1) {
+				int y = stoi(s);
+				flag3 = false;
+				x = y;
+			}
+		}
+	}
 
 	if (dataDonar.size() == 1)
 	{
@@ -347,7 +376,29 @@ int Donor::login(vector<Donor>& dataDonar)
 				idReenter.add_row({ "Or enter ' -1 ' to back" });
 				idReenter.format().font_color(Color::red).border("").corner("").padding_left(2);
 				cout << idReenter << endl;
-				cin >> x;
+				cin >> s;
+				bool flag3 = true;
+				while (flag3)
+				{
+					for (int i = 0; i < s.size(); i++)
+					{
+						if ((Donor::aski(s[i])) < 48 || (Donor::aski(s[i])) > 57)
+						{
+							Table idReenter;
+							idReenter.add_row({ "please re enter the right id sir" });
+							idReenter.add_row({ "Or enter ' -1 ' to back" });
+							idReenter.format().font_color(Color::red).border("").corner("").padding_left(2);
+							cout << idReenter << endl;
+							cin >> s;
+							break;
+						}
+						else if (i == s.size() - 1) {
+							int y = stoi(s);
+							flag3 = false;
+							x = y;
+						}
+					}
+				}
 
 				if (x == dataDonar[0].id)
 				{
@@ -355,7 +406,7 @@ int Donor::login(vector<Donor>& dataDonar)
 					string s = "please enter your password " + dataDonar[0].name;
 					passwordEnter.add_row({ s });
 					passwordEnter.format().font_color(Color::white).border("").corner("").padding_left(2);
-					cout << passwordEnter<<endl;
+					cout << passwordEnter << endl;
 					cin >> p;
 					if (p == dataDonar[0].password)
 					{
@@ -440,7 +491,7 @@ int Donor::login(vector<Donor>& dataDonar)
 	if (flag) // if the id have been found.
 	{
 		Table passwordEnter;
-		string s = "Please enter your password Mr " + dataDonar[idx].name ;
+		string s = "Please enter your password Mr " + dataDonar[idx].name;
 		passwordEnter.add_row({ s });
 		passwordEnter.format().font_color(Color::white).border("").corner("").padding_left(2);
 		cout << passwordEnter << endl;
@@ -528,6 +579,7 @@ int Donor::login(vector<Donor>& dataDonar)
 	}
 
 }
+
 
 void Donor::updateAccount(vector<Donor>& dataDonar, int index)
 {

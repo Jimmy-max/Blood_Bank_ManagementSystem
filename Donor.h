@@ -22,6 +22,7 @@ public:
 	static void updateAccount(vector<Donor>& dataDonar, int index);
 	static void deleteAccount(vector<Donor>& dataDonar, int index);
 	static void donationRequest(vector<Donor>& donor, int index, vector<Donor>& donations);
+	static int aski(char z);
 
 	
 	~Donor(); // destructor

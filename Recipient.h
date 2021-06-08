@@ -23,6 +23,7 @@ public:
 	static void isBloodAvailable(vector<Donor>& donation, int index, vector<Recipient>& recipient);
 	static void displayBloodData(vector<Donor>& donation);
 	static void requestAndConfirm(vector<Donor>& donation);
+	static int aski(char z);
 
 	static string calculateExpiryDate(string s);
 
