@@ -139,7 +139,7 @@ void Donor::reg()
 		}
 	} while (count != false);
 
-	cout << "\n  Enter your blood type \n  Please(-O, +O,- A, +A,-B,+B,+AB,-AB) : ";
+	cout << "\n  Enter your blood type \n  Please(-O,+O,-A,+A,-B,+B,+AB,-AB) : ";
 	string B;
 	cin >> B;
 	int y = true;
@@ -200,15 +200,15 @@ void Donor::reg()
 			cout << "\n  Please enter your date latest donation\n  Like :Year-Month-Day : ";
 			string d;
 			cin >> d;
-			int year = stoi(d.substr(0, 3)); //2020-03-15
-			int month = stoi(d.substr(5, 6));
-			int day = stoi(d.substr(8, 9));
-			cout << year << month << day;
 			int l = true;
 			do
 			{
-				if (date_check(d) && year <= 2021 && month <= 12 && day <= 30) {
+				int year = stoi(d.substr(0, 4));
+				int month = stoi(d.substr(5, 6));
+				int day = stoi(d.substr(8, 9));
+				if (date_check(d) && month <= 12 && day <= 30 && year <= 2021 && year > 1899) {
 
+						
 						cout << "Your date of latest donation is valid" << endl;
 						date_latest_donation = d;
 						l = false;
@@ -229,10 +229,14 @@ void Donor::reg()
 			cout << "\n  Please enter your date latest donation\n  Like :year-month-day : ";
 			string d;
 			cin >> d;
+			
 			int l = true;
 			do
 			{
-				if (date_check(d)) {
+				int year = stoi(d.substr(0, 4));
+				int month = stoi(d.substr(5, 6));
+				int day = stoi(d.substr(8, 9));
+				if (date_check(d) && month <= 12 && day <= 30 && year <= 2021 && year > 1899) {
 					cout << "Your date of latest donation is valid" << endl;
 					date_latest_donation = d;
 					l = false;
@@ -241,6 +245,7 @@ void Donor::reg()
 
 				else {
 					cout << "Your date of latest donation is invalid , please try again " << endl;
+					
 					cin >> d;
 				}
 			} while (l != false);

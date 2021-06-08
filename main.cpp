@@ -211,7 +211,7 @@ int main() {
 					donor.reg();
 					vDonor.push_back(donor);
 
-					User::clear_screen(' ');
+					//User::clear_screen(' ');
 					Table valid;
 					valid.add_row({ "Your registration is successfully" });
 					valid.format().font_color(Color::green).border("").corner("").padding_left(2);
