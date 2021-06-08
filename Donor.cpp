@@ -315,77 +315,252 @@ void Donor::reg(vector<Donor>& vDonors)
 
 int Donor::login(vector<Donor>& dataDonar)
 {
-	int x;// to take the id from the user.
-	int y = 0;
-	string s;
-	int check = 0;
-	string p; // password.
-	int idx = 0; // to save the index of the user.
-	int idxl = 0, idxr = 0;
-	bool flag = 0;
-	bool flag2 = 0;
-	sort(dataDonar.begin(), dataDonar.end(), [](const Donor& lhs, const Donor& rhs) {return lhs.id < rhs.id; });
-	printf("  Please enter your id \n  --> ");
-	cin >> s;
-	bool flag3 = true;
-	while (flag3)
 	{
-		for (int i = 0; i < s.size(); i++)
+		int x;// to take the id from the user.
+		int y = 0;
+		string s;
+		int check = 0;
+		string p; // password.
+		int idx = 0; // to save the index of the user.
+		int idxl = 0, idxr = 0;
+		bool flag = 0;
+		bool flag2 = 0;
+		sort(dataDonar.begin(), dataDonar.end(), [](const Donor& lhs, const Donor& rhs) {return lhs.id < rhs.id; });
+		printf("  Please enter your id \n  --> ");
+		cin >> s;
+		bool flag3 = true;
+		while (flag3)
 		{
-			if (((Donor::aski(s[i])) < 48 && (Donor::aski(s[i]))>45)||((Donor::aski(s[i])) < 45) || (Donor::aski(s[i])) > 57)
+			for (int i = 0; i < s.size(); i++)
 			{
-				Table idReenter;
-				idReenter.add_row({ "please re enter the right id sir" });
-				idReenter.add_row({ "Or enter ' -1 ' to back" });
-				idReenter.format().font_color(Color::red).border("").corner("").padding_left(2);
-				cout << idReenter << endl;
-				cin >> s;
-				break;
-			}
-			else if (i == s.size() - 1) {
-				int y = stoi(s);
-				flag3 = false;
-				x = y;
+				if (((Donor::aski(s[i])) < 48 && (Donor::aski(s[i])) > 45) || ((Donor::aski(s[i])) < 45) || (Donor::aski(s[i])) > 57)
+				{
+					Table idReenter;
+					idReenter.add_row({ "Please re enter the right id sir" });
+					idReenter.add_row({ "Or enter ' -1 ' to back" });
+					idReenter.format().font_color(Color::red).border("").corner("").padding_left(2);
+					cout << idReenter << endl;
+					cin >> s;
+					break;
+				}
+				else if (i == s.size() - 1) {
+					int y = stoi(s);
+					flag3 = false;
+					x = y;
+				}
 			}
 		}
-	}
+		if (x == -1)
+			return -1;
 
-	if (dataDonar.size() == 1)
-	{
-		if (x == dataDonar[0].id)
+		if (dataDonar.size() == 1)
 		{
-			cout << "please enter your password " << dataDonar[0].name << endl;
-			cin >> p;
-			if (p == dataDonar[0].password)
+			if (x == dataDonar[0].id)
 			{
-				User::clear_screen(' ');
-				Table passwordValid;
-				string s = "welcome to your account " + dataDonar[0].name;
-				passwordValid.add_row({ s });
-				passwordValid.format().font_color(Color::green).border("").corner("").padding_left(2);
-				cout << passwordValid << endl;
-				return 0;
+				cout << "please enter your password " << dataDonar[0].name << endl;
+				cin >> p;
+				if (p == dataDonar[0].password)
+				{
+					User::clear_screen(' ');
+					Table passwordValid;
+					string s = "welcome to your account " + dataDonar[0].name;
+					passwordValid.add_row({ s });
+					passwordValid.format().font_color(Color::green).border("").corner("").padding_left(2);
+					cout << passwordValid << endl;
+					return 0;
+				}
+				else
+				{
+					while (true)
+					{
+						Table passwordInvalid;
+						string s = "please re enter the right password Mr." + dataDonar[0].name;
+						passwordInvalid.add_row({ s });
+						passwordInvalid.format().font_color(Color::red).border("").corner("").padding_left(2);
+						cout << passwordInvalid << endl;
+						cout << "Or enter ' B ' to back\n";
+						cin >> p;
+						if (p == dataDonar[0].password)
+						{
+							User::clear_screen(' ');
+							Table passwordValid;
+							string s = "welcome to your account " + dataDonar[0].name;
+							passwordValid.add_row({ s });
+							passwordValid.format().font_color(Color::green).border("").corner("").padding_left(2);
+							cout << passwordValid << endl;
+							return 0;
+						}
+						else if (p == "B")
+							return -1;
+
+					}
+				}
 			}
 			else
 			{
 				while (true)
 				{
+					User::clear_screen(' ');
+					Table idReenter;
+					idReenter.add_row({ "please re enter the right id sir" });
+					idReenter.add_row({ "Or enter ' -1 ' to back" });
+					idReenter.format().font_color(Color::red).border("").corner("").padding_left(2);
+					cout << idReenter << endl;
+					cin >> s;
+					bool flag3 = true;
+					while (flag3)
+					{
+						for (int i = 0; i < s.size(); i++)
+						{
+							if (((Donor::aski(s[i])) < 48 && (Donor::aski(s[i])) > 45) || ((Donor::aski(s[i])) < 45) || (Donor::aski(s[i])) > 57)
+							{
+								Table idReenter;
+								idReenter.add_row({ "please re enter the right id sir" });
+								idReenter.add_row({ "Or enter ' -1 ' to back" });
+								idReenter.format().font_color(Color::red).border("").corner("").padding_left(2);
+								cout << idReenter << endl;
+								cin >> s;
+								break;
+							}
+							else if (i == s.size() - 1) {
+								int y = stoi(s);
+								flag3 = false;
+								x = y;
+							}
+						}
+					}
+
+					if (x == dataDonar[0].id)
+					{
+						Table passwordEnter;
+						string s = "please enter your password " + dataDonar[0].name;
+						passwordEnter.add_row({ s });
+						passwordEnter.format().font_color(Color::white).border("").corner("").padding_left(2);
+						cout << passwordEnter << endl;
+						cin >> p;
+						if (p == dataDonar[0].password)
+						{
+							User::clear_screen(' ');
+							Table passwordValid;
+							string s = "welcome to your account " + dataDonar[0].name;
+							passwordValid.add_row({ s });
+							passwordValid.format().font_color(Color::green).border("").corner("").padding_left(2);
+							cout << passwordValid << endl;
+							return 0;
+						}
+						else
+						{
+							while (true)
+							{
+								Table passReenter;
+								string s = "please re enter the right password Mr " + dataDonar[0].name;
+								passReenter.add_row({ s });
+								passReenter.add_row({ "Or enter ' B ' to back" });
+								passReenter.format().font_color(Color::red).border("").corner("").padding_left(2);
+								cout << passReenter << endl;
+								cin >> p;
+								if (p == dataDonar[0].password)
+								{
+									User::clear_screen(' ');
+									Table passwordValid;
+									string s = "welcome to your account " + dataDonar[0].name;
+									passwordValid.add_row({ s });
+									passwordValid.format().font_color(Color::green).border("").corner("").padding_left(2);
+									cout << passwordValid << endl;
+									return 0;
+								}
+								else if (p == "B")
+									return -1;
+
+							}
+						}
+
+					}
+					else if (x == -1)
+						return -1;
+				}
+			}
+		}
+		int l, r, mid;
+		l = dataDonar[idxl].id;
+		idxr = (dataDonar.size() - 1);
+		r = dataDonar[idxr].id;
+		while (l < r)
+		{
+			idx = idxl + ((idxr - idxl) / 2);
+			mid = dataDonar[idx].id;
+			if (mid == x)
+			{
+				flag = 1;
+				break;
+			}
+			else if (x == dataDonar[idxl].id)
+			{
+				flag = 1;
+				idx = idxl;
+				break;
+			}
+			else if (x == dataDonar[idxr].id)
+			{
+				flag = 1;
+				idx = idxr;
+				break;
+			}
+			else if (x < mid)
+			{
+
+				r = dataDonar[idx - 1].id;
+				idxr = idx - 1;
+
+			}
+			else if (x > mid)
+			{
+				l = dataDonar[idx + 1].id;
+			}  idxl = idx + 1;
+		}
+		if (flag) // if the id have been found.
+		{
+			Table passwordEnter;
+			string s = "Please enter your password Mr " + dataDonar[idx].name;
+			passwordEnter.add_row({ s });
+			passwordEnter.format().font_color(Color::white).border("").corner("").padding_left(2);
+			cout << passwordEnter << endl;
+			cin >> p;
+			if (p == dataDonar[idx].password)
+			{
+				User::clear_screen(' ');
+				Table passwordValid;
+				string s = "welcome to your account " + dataDonar[idx].name;
+				passwordValid.add_row({ s });
+				passwordValid.format().font_color(Color::green).border("").corner("").padding_left(2);
+				cout << passwordValid << endl;
+				flag2 = 1;
+			}
+			else // password doesn't match.
+			{
+				User::clear_screen(' ');
+				Table passwordInvalid;
+				passwordInvalid.add_row({ "Wrong password" });
+				passwordInvalid.format().font_color(Color::red).border("").corner("").padding_left(2);
+				cout << passwordInvalid << endl;
+				while (true)
+				{
 					Table passwordInvalid;
-					string s = "please re enter the right password Mr." + dataDonar[0].name;
+					string s = "please re enter the right password Mr " + dataDonar[idx].name;
 					passwordInvalid.add_row({ s });
+					passwordInvalid.add_row({ "Or enter ' B ' to back" });
 					passwordInvalid.format().font_color(Color::red).border("").corner("").padding_left(2);
 					cout << passwordInvalid << endl;
-					cout << "Or enter ' B ' to back\n";
 					cin >> p;
-					if (p == dataDonar[0].password)
+					if (p == dataDonar[idx].password)
 					{
 						User::clear_screen(' ');
 						Table passwordValid;
-						string s = "welcome to your account " + dataDonar[0].name;
+						string s = "welcome to your account Mr " + dataDonar[idx].name;
 						passwordValid.add_row({ s });
 						passwordValid.format().font_color(Color::green).border("").corner("").padding_left(2);
 						cout << passwordValid << endl;
-						return 0;
+						return idx;
 					}
 					else if (p == "B")
 						return -1;
@@ -393,218 +568,47 @@ int Donor::login(vector<Donor>& dataDonar)
 				}
 			}
 		}
-		else
+		else // if the id doesn't found.
 		{
-			while (true)
+			User::clear_screen(' ');
+			Table idReenter;
+			idReenter.add_row({ "ID not found, please enter 1 to try again" });
+			idReenter.add_row({ "Or enter ' -1 ' to back" });
+			idReenter.format().font_color(Color::red).border("").corner("").padding_left(2);
+			cout << idReenter << endl;
+			while (cin >> x)
 			{
-				User::clear_screen(' ');
-				Table idReenter;
-				idReenter.add_row({ "please re enter the right id sir" });
-				idReenter.add_row({ "Or enter ' -1 ' to back" });
-				idReenter.format().font_color(Color::red).border("").corner("").padding_left(2);
-				cout << idReenter << endl;
-				cin >> s;
-				bool flag3 = true;
-				while (flag3)
+				if (x == 1)
 				{
-					for (int i = 0; i < s.size(); i++)
-					{
-						if (((Donor::aski(s[i])) < 48 && (Donor::aski(s[i])) > 45) || ((Donor::aski(s[i])) < 45) || (Donor::aski(s[i])) > 57)
-						{
-							Table idReenter;
-							idReenter.add_row({ "please re enter the right id sir" });
-							idReenter.add_row({ "Or enter ' -1 ' to back" });
-							idReenter.format().font_color(Color::red).border("").corner("").padding_left(2);
-							cout << idReenter << endl;
-							cin >> s;
-							break;
-						}
-						else if (i == s.size() - 1) {
-							int y = stoi(s);
-							flag3 = false;
-							x = y;
-						}
-					}
-				}
-
-				if (x == dataDonar[0].id)
-				{
-					Table passwordEnter;
-					string s = "please enter your password " + dataDonar[0].name;
-					passwordEnter.add_row({ s });
-					passwordEnter.format().font_color(Color::white).border("").corner("").padding_left(2);
-					cout << passwordEnter << endl;
-					cin >> p;
-					if (p == dataDonar[0].password)
-					{
-						User::clear_screen(' ');
-						Table passwordValid;
-						string s = "welcome to your account " + dataDonar[0].name;
-						passwordValid.add_row({ s });
-						passwordValid.format().font_color(Color::green).border("").corner("").padding_left(2);
-						cout << passwordValid << endl;
-						return 0;
-					}
-					else
-					{
-						while (true)
-						{
-							Table passReenter;
-							string s = "please re enter the right password Mr " + dataDonar[0].name;
-							passReenter.add_row({ s });
-							passReenter.add_row({ "Or enter ' B ' to back" });
-							passReenter.format().font_color(Color::red).border("").corner("").padding_left(2);
-							cout << passReenter << endl;
-							cin >> p;
-							if (p == dataDonar[0].password)
-							{
-								User::clear_screen(' ');
-								Table passwordValid;
-								string s = "welcome to your account " + dataDonar[0].name;
-								passwordValid.add_row({ s });
-								passwordValid.format().font_color(Color::green).border("").corner("").padding_left(2);
-								cout << passwordValid << endl;
-								return 0;
-							}
-							else if (p == "B")
-								return -1;
-
-						}
-					}
-
+					return Donor::login(dataDonar);
 				}
 				else if (x == -1)
-					return -1;
-			}
-		}
-	}
-	int l, r, mid;
-	l = dataDonar[idxl].id;
-	idxr = (dataDonar.size() - 1);
-	r = dataDonar[idxr].id;
-	while (l < r)
-	{
-		idx = idxl + ((idxr - idxl) / 2);
-		mid = dataDonar[idx].id;
-		if (mid == x)
-		{
-			flag = 1;
-			break;
-		}
-		else if (x == dataDonar[idxl].id)
-		{
-			flag = 1;
-			idx = idxl;
-			break;
-		}
-		else if (x == dataDonar[idxr].id)
-		{
-			flag = 1;
-			idx = idxr;
-			break;
-		}
-		else if (x < mid)
-		{
-
-			r = dataDonar[idx - 1].id;
-			idxr = idx - 1;
-
-		}
-		else if (x > mid)
-		{
-			l = dataDonar[idx + 1].id;
-		}  idxl = idx + 1;
-	}
-	if (flag) // if the id have been found.
-	{
-		Table passwordEnter;
-		string s = "Please enter your password Mr " + dataDonar[idx].name;
-		passwordEnter.add_row({ s });
-		passwordEnter.format().font_color(Color::white).border("").corner("").padding_left(2);
-		cout << passwordEnter << endl;
-		cin >> p;
-		if (p == dataDonar[idx].password)
-		{
-			User::clear_screen(' ');
-			Table passwordValid;
-			string s = "welcome to your account " + dataDonar[idx].name;
-			passwordValid.add_row({ s });
-			passwordValid.format().font_color(Color::green).border("").corner("").padding_left(2);
-			cout << passwordValid << endl;
-			flag2 = 1;
-		}
-		else // password doesn't match.
-		{
-			User::clear_screen(' ');
-			Table passwordInvalid;
-			passwordInvalid.add_row({ "Wrong password" });
-			passwordInvalid.format().font_color(Color::red).border("").corner("").padding_left(2);
-			cout << passwordInvalid << endl;
-			while (true)
-			{
-				Table passwordInvalid;
-				string s = "please re enter the right password Mr " + dataDonar[idx].name;
-				passwordInvalid.add_row({ s });
-				passwordInvalid.add_row({ "Or enter ' B ' to back" });
-				passwordInvalid.format().font_color(Color::red).border("").corner("").padding_left(2);
-				cout << passwordInvalid << endl;
-				cin >> p;
-				if (p == dataDonar[idx].password)
 				{
-					User::clear_screen(' ');
-					Table passwordValid;
-					string s = "welcome to your account Mr " + dataDonar[idx].name;
-					passwordValid.add_row({ s });
-					passwordValid.format().font_color(Color::green).border("").corner("").padding_left(2);
-					cout << passwordValid << endl;
-					return idx;
-				}
-				else if (p == "B")
 					return -1;
-
+				}
+				else {
+					Table idReenter;
+					idReenter.add_row({ "wrong input ,please enter 1 to try again" });
+					idReenter.add_row({ "Or enter ' -1 ' to back" });
+					idReenter.format().font_color(Color::red).border("").corner("").padding_left(2);
+					cout << idReenter << endl;
+					continue;
+				}
 			}
+
+
+
 		}
-	}
-	else // if the id doesn't found.
-	{
-		User::clear_screen(' ');
-		Table idReenter;
-		idReenter.add_row({ "ID not found, please enter 1 to try again" });
-		idReenter.add_row({ "Or enter ' -1 ' to back" });
-		idReenter.format().font_color(Color::red).border("").corner("").padding_left(2);
-		cout << idReenter << endl;
-		while (cin >> x)
+		if (flag2)
 		{
-			if (x == 1)
-			{
-				return Donor::login(dataDonar);
-			}
-			else if (x == -1)
-			{
-				return -1;
-			}
-			else {
-				Table idReenter;
-				idReenter.add_row({ "wrong input ,please enter 1 to try again" });
-				idReenter.add_row({ "Or enter ' -1 ' to back" });
-				idReenter.format().font_color(Color::red).border("").corner("").padding_left(2);
-				cout << idReenter << endl;
-				continue;
-			}
+			return idx;
+		}
+		else
+		{
+			return -1;
 		}
 
-
-
 	}
-	if (flag2)
-	{
-		return idx;
-	}
-	else
-	{
-		return -1;
-	}
-
 }
 
 void Donor::updateAccount(vector<Donor>& dataDonar, int index)

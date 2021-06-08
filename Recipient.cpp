@@ -223,7 +223,8 @@ int Recipient::login(vector<Recipient>& datarecipient)
 			}
 		}
 	}
-
+	if (x == -1)
+		return -1;
 	if (datarecipient.size() == 1)
 	{
 		if (x == datarecipient[0].id)
