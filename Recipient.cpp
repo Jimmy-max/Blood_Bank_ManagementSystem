@@ -616,8 +616,8 @@ Recipient::~Recipient() {
 void Recipient::updateAccount(vector<Recipient>& datarecipient, int index)
 {
 
-	char c = 'y';
-	while (c == 'y')
+	string c = "y";
+	while (c == "y")
 	{
 		cout << "\n  Enter number to updata \n  1-Password  \n  2-Age  \n  3-Hospital  \n  4-Your Doctor  \n  5-Done  \n  --> ";
 		int choice;
@@ -684,7 +684,7 @@ void Recipient::updateAccount(vector<Recipient>& datarecipient, int index)
 		cin >> c;
 		do
 		{
-			if (c == 'y' || c == 'n')
+			if (c == "y" || c == "n")
 			{
 				break;
 			}

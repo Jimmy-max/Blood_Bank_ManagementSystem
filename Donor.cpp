@@ -580,11 +580,10 @@ int Donor::login(vector<Donor>& dataDonar)
 
 }
 
-
 void Donor::updateAccount(vector<Donor>& dataDonar, int index)
 {
-	char c = 'y';
-	while (c == 'y')
+	string c = "y";
+	while (c == "y")
 	{
 		cout << "\n  Enter number to update \n  1-Password  \n  2-Age \n  3-Diseases that you suffer from \n  4-Other diseases or take any medicine \n  5-Date latest donation  \n  6-Done \n  --> ";
 		int choice;
@@ -742,7 +741,7 @@ void Donor::updateAccount(vector<Donor>& dataDonar, int index)
 		cin >> c;
 		do
 		{
-			if (c == 'y' || c == 'n')
+			if (c == "y" || c == "n")
 			{
 				break;
 			}
