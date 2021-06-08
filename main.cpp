@@ -208,7 +208,7 @@ int main() {
 					cout << RegistrationPage;
 
 					Donor donor;
-					donor.reg();
+					donor.reg(vDonor);
 					vDonor.push_back(donor);
 
 					//User::clear_screen(' ');
@@ -227,7 +227,7 @@ int main() {
 					cout << RegistrationPage;
 
 					Recipient recipient;
-					recipient.reg();
+					recipient.reg(vRecipient);
 					vRecipient.push_back(recipient);
 					
 					User::clear_screen(' ');

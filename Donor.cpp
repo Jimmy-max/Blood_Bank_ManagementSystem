@@ -25,28 +25,55 @@ int Donor::aski(char z)
 	return m;
 }
 
-void Donor::reg()
+void Donor::reg(vector<Donor>& vDonors)
 {
 	
 	cout << "\n  Please enter your id\n  It should be a number : ";
-	cin >> id;
-	while (cin.fail()) 
+	while (true)
 	{
-		Table error;
-		error.add_row({ "ERROR ,Please enter an ID using numbers only" });
-		error.format().font_color(Color::red).border("").corner("").padding_left(2);
-		cout << error << endl;
-
-		cin.clear();
-		cin.ignore(256, '\n');
-		cout << "\n  Another One --> ";
 		cin >> id;
-	}
+		while (cin.fail())
+		{
+			Table error;
+			error.add_row({ "ERROR ,Please enter an ID using numbers only" });
+			error.format().font_color(Color::red).border("").corner("").padding_left(2);
+			cout << error << endl;
 
-	Table valid;
-	valid.add_row({ "It is valid" });
-	valid.format().font_color(Color::green).border("").corner("").padding_left(2);
-	cout << valid << endl;
+			cin.clear();
+			cin.ignore(256, '\n');
+			cout << "\n  Another One --> ";
+			cin >> id;
+		}
+
+		bool idISValid = true;
+		for (size_t i = 0; i < vDonors.size(); i++)
+		{
+			if (vDonors[i].id == id)
+			{
+				idISValid = false;
+				break;
+			}
+
+		}
+		if (idISValid)
+		{
+			Table valid;
+			valid.add_row({ "It is valid" });
+			valid.format().font_color(Color::green).border("").corner("").padding_left(2);
+			cout << valid << endl;
+			break;
+		}
+		else
+		{
+			Table error;
+			error.add_row({ "This id is already exists : " });
+			error.format().font_color(Color::red).border("").corner("").padding_left(2);
+			cout << error << endl << "  --> ";
+		}
+	}
+	
+	
+	
 
 	cout << "\n  Please enter your name : " ;
 	cin.ignore();
@@ -298,7 +325,7 @@ int Donor::login(vector<Donor>& dataDonar)
 	bool flag = 0;
 	bool flag2 = 0;
 	sort(dataDonar.begin(), dataDonar.end(), [](const Donor& lhs, const Donor& rhs) {return lhs.id < rhs.id; });
-	printf("please enter your id \n");
+	printf("  Please enter your id \n  --> ");
 	cin >> s;
 	bool flag3 = true;
 	while (flag3)

@@ -17,7 +17,7 @@ public:
 
 	//functions - methods
 	static bool date_check(string); // validate Email
-	void reg(); // register
+	void reg(vector<Donor>& donors); // register
 	static int login(vector<Donor>& dataDonar);
 	static void updateAccount(vector<Donor>& dataDonar, int index);
 	static void deleteAccount(vector<Donor>& dataDonar, int index);

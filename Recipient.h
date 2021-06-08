@@ -16,7 +16,7 @@ public:
 	string doc_of_case;
 
 	//functions - methods
-	void reg(); // register
+	void reg(vector<Recipient>& vRecipients); // register
 	static int login(vector<Recipient>& datarecipient);
 	static void updateAccount(vector<Recipient>& datarecipient , int index);
 	static void deleteAccount(vector<Recipient>& datarecipient, int index);

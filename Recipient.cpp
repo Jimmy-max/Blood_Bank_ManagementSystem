@@ -26,27 +26,52 @@ int Recipient::aski(char z)
 	return m;
 }
 
-void Recipient ::reg() 
+void Recipient ::reg(vector<Recipient>& vRecipients)
 {
 	cout << "\n  Please enter your id\n  It should be a number : ";
-	cin >> id;
-	while (cin.fail())
+	while (true)
 	{
-		Table error;
-		error.add_row({ "ERROR ,Please enter an ID using numbers only" });
-		error.format().font_color(Color::red).border("").corner("").padding_left(2);
-		cout << error << endl;
-
-		cin.clear();
-		cin.ignore(256, '\n');
-		cout << "\n  Another One --> ";
 		cin >> id;
-	}
+		while (cin.fail())
+		{
+			Table error;
+			error.add_row({ "ERROR ,Please enter an ID using numbers only" });
+			error.format().font_color(Color::red).border("").corner("").padding_left(2);
+			cout << error << endl;
 
-	Table valid;
-	valid.add_row({ "It is valid" });
-	valid.format().font_color(Color::green).border("").corner("").padding_left(2);
-	cout << valid << endl;
+			cin.clear();
+			cin.ignore(256, '\n');
+			cout << "\n  Another One --> ";
+			cin >> id;
+		}
+
+		bool idISValid = true;
+		for (size_t i = 0; i < vRecipients.size(); i++)
+		{
+			if (vRecipients[i].id == id)
+			{
+				idISValid = false;
+				break;
+			}
+
+		}
+		if (idISValid)
+		{
+			Table valid;
+			valid.add_row({ "It is valid" });
+			valid.format().font_color(Color::green).border("").corner("").padding_left(2);
+			cout << valid << endl;
+			break;
+		}
+		else
+		{
+			Table error;
+			error.add_row({ "This id is already exists : " });
+			error.format().font_color(Color::red).border("").corner("").padding_left(2);
+			cout << error << endl << "  --> ";
+		}
+	}
+	
 	
 
 	cout << "\n  Please enter your name : ";
@@ -174,7 +199,7 @@ int Recipient::login(vector<Recipient>& datarecipient)
 	bool flag = 0;
 	bool flag2 = 0;
 	sort(datarecipient.begin(), datarecipient.end(), [](const Recipient& lhs, const Recipient& rhs) {return lhs.id < rhs.id; });
-	printf("please enter your id \n");
+	printf("  Please enter your id \n  --> ");
 	cin >> s;
 	bool flag3 = true;
 	while (flag3)
@@ -184,7 +209,7 @@ int Recipient::login(vector<Recipient>& datarecipient)
 			if (((Recipient::aski(s[i])) < 48 && (Recipient::aski(s[i])) > 45) || ((Recipient::aski(s[i])) < 45) || (Recipient::aski(s[i])) > 57)
 			{
 				Table idReenter;
-				idReenter.add_row({ "please re enter the right id sir" });
+				idReenter.add_row({ "Please re enter the right id sir" });
 				idReenter.add_row({ "Or enter ' -1 ' to back" });
 				idReenter.format().font_color(Color::red).border("").corner("").padding_left(2);
 				cout << idReenter << endl;
