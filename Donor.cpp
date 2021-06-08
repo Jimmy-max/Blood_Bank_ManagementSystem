@@ -21,6 +21,7 @@ bool Donor::date_check(string date)
 
 void Donor::reg()
 {
+	
 	cout << "\n  Please enter your id\n  It should be a number : ";
 	cin >> id;
 	while (cin.fail()) 
@@ -280,6 +281,7 @@ void Donor::reg()
 
 int Donor::login(vector<Donor>& dataDonar)
 {
+	
 	int x; // to take the id from the user.
 	int check = 0;
 	string p; // password.
@@ -646,19 +648,19 @@ void Donor::updateAccount(vector<Donor>& dataDonar, int index)
 		}
 		else if (choice == 5)
 		{
-
+		bool a = date_check("5");
 			while (true)
 			{
-				g
- 
+				
+				
 			    cout << "  Please enter your date latest donation\n  Like :Year-Month-Day : ";
 			    string date_latest_donation;
 			    cin >> date_latest_donation; 
 
-			    int year = stoi(d.substr(0, 4));
-			    int month = stoi(d.substr(5, 6));
-			    int day = stoi(d.substr(8, 9));
-			    if (date_check(date_latest_donation) && month <= 12 && day <= 30 && year <= 2021 && year > 1899)
+			    int year = stoi(date_latest_donation.substr(0, 4));
+			    int month = stoi(date_latest_donation.substr(5, 6));
+			    int day = stoi(date_latest_donation.substr(8, 9));
+			    if ( date_check(date_latest_donation) && month <= 12 && day <= 30 && year <= 2021 && year > 1899)
 				{
 				    cout << "Your date of latest donation is valid" << endl;
 				    cout << "-----------------------------\n";
