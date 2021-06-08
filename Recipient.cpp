@@ -80,9 +80,8 @@ void Recipient ::reg()
 	cin >> password;
 
 
-	cout << "\n  Please enter your age \n  The donor must be between 17 and 60";
+	cout << "\n  Please enter your age : ";
 	int year;
-	int old = true;
 	while (true)
 	{
 		cout << " \n  --> ";
@@ -97,23 +96,7 @@ void Recipient ::reg()
 			cin.ignore(256, '\n');
 			continue;
 		}
-		else
-		{
-			if (year < 60 && year > 17)
-			{
-				age = year;
-				old = false;
-				break;
-			}
-			else
-			{
-				Table error;
-				error.add_row({ "ERROR ,Please enter age between 17 and 60" });
-				error.format().font_color(Color::red).border("").corner("").padding_left(2);
-				cout << error << endl;
-				continue;
-			}
-		}
+		break;
 	}
 
 	cout << "\n  Please enter your gender (female / male) \n  -->  ";

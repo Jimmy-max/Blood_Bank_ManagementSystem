@@ -98,7 +98,7 @@ void Donor::reg()
 		}
 		else
 		{
-			if (year < 60 && year > 17)
+			if (year <= 60 && year >= 17)
 			{
 				age = year;
 				old = false;
@@ -166,7 +166,7 @@ void Donor::reg()
 
 	cout << "\n  If you have a chronic illnes like: \n\n  blood pressure disorders, thyroid disease\n  diabetes, cancer, heart disorders,hepatitis\n  Please write down these disease.";
 	cout << "\n\n  If you do not have any disease, write (NO) \n  --> ";
-	string d;  cin >> d;
+	string d;  cin.ignore();  	getline(cin, d);
 	int k = true;
 	do {
 		if (d == "blood pressure disorders" || d == "thyroid disease" || d == "diabetes " || d == "cancer" || d == "heart disorders" || d == "hepatitis" || d == "NO")
@@ -182,7 +182,8 @@ void Donor::reg()
 			error.format().font_color(Color::red).border("").corner("").padding_left(2);
 			cout << error << endl;
 			cout << "  --> ";
-			cin >> d;
+			cin.ignore();
+			getline(cin, d);
 		}
 
 	} while (k != false);
@@ -196,7 +197,7 @@ void Donor::reg()
 		cin >> f;
 		if (f == 1)
 		{
-			cout << "\n  Please enter this disease here : ";
+			cout << "\n  Please enter this disease/medicene here : ";
 			cin >> other;
 			cout << "\n  Please enter your date latest donation\n  Like :Year-Month-Day : ";
 			string d;
@@ -255,7 +256,7 @@ void Donor::reg()
 				else {
 					Table error;
 					error.add_row({ "Your date of latest donation is invalid\n  Please try again" });
-					error.format().font_color(Color::green).border("").corner("").padding_left(2);
+					error.format().font_color(Color::red).border("").corner("").padding_left(2);
 					cout << error << endl << "  --> ";
 					
 					cin >> d;
@@ -566,7 +567,7 @@ void Donor::updateAccount(vector<Donor>& dataDonar, int index)
 				}
 				else
 				{
-					if (newage < 60 && newage > 17)
+					if (newage <= 60 && newage >= 17)
 					{
 						dataDonar[index].age = newage ;
 						break;
@@ -589,7 +590,8 @@ void Donor::updateAccount(vector<Donor>& dataDonar, int index)
 			cout << "\n  If you have a chronic illnes like: \n\n  blood pressure disorders, thyroid disease\n  diabetes, cancer, heart disorders,hepatitis\n  Please write down these disease.";
 			cout << "\n\n  If you do not have any disease, write (NO) \n  --> ";
 			string suffersFromDisease ;
-			cin >> suffersFromDisease ;
+			cin.ignore();
+			getline(cin, suffersFromDisease);
 			bool m = true;
 			do {
 				if (suffersFromDisease == "blood pressure disorders" || suffersFromDisease == "thyroid disease" || suffersFromDisease == "diabetes " || suffersFromDisease == "cancer" || suffersFromDisease == "heart disorders" || suffersFromDisease == "hepatitis" || suffersFromDisease == "NO")
@@ -605,7 +607,8 @@ void Donor::updateAccount(vector<Donor>& dataDonar, int index)
 					error.format().font_color(Color::red).border("").corner("").padding_left(2);
 					cout << error << endl;
 					cout << "  --> ";
-					cin >> suffersFromDisease ;
+					cin.ignore();
+					getline(cin, suffersFromDisease);
 				}
 
 			} while (m != false);
