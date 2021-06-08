@@ -544,7 +544,7 @@ void Recipient::isBloodAvailable(vector<Donor>& donation, int index, vector<Reci
 	}
 }
 
-void Recipient::requestAndConfirm(vector<Donor>& donation) {
+void Recipient::requestAndConfirm(vector<Donor>& donation, int index, vector<Recipient>& recipient) {
 	map<string, int> mQuantity;
 	map<string, stack<string>> mDates;
 	map<string, int>::iterator itr;
@@ -558,7 +558,7 @@ void Recipient::requestAndConfirm(vector<Donor>& donation) {
 		mQuantity[donation[i].blood_type] += 1;
 		mDates[donation[i].blood_type].push(donation[i].date_latest_donation);
 	}
-	
+
 	while (true)
 	{
 		User::clear_screen(' ');
@@ -582,6 +582,8 @@ void Recipient::requestAndConfirm(vector<Donor>& donation) {
 				User::clear_screen(' ');
 				Table valid;
 				valid.add_row({ "Your request has been confirmed" });
+				string s = "with the Hospital : " + recipient[index].hospital;
+				valid.add_row({ s });
 				valid.format().font_color(Color::green).border("").corner("").padding_left(2);
 				cout << valid << endl;
 				break;
@@ -603,8 +605,8 @@ void Recipient::requestAndConfirm(vector<Donor>& donation) {
 			cout << error << endl;
 		}
 	}
-	
-	
+
+
 }
 
 Recipient::~Recipient() {

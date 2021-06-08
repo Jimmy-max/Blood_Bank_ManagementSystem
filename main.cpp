@@ -165,7 +165,7 @@ int main() {
 						}
 						else if (choice == 5)
 						{
-							Recipient::requestAndConfirm(vDonations);
+							Recipient::requestAndConfirm(vDonations, index, vRecipient);
 						}
 						else if (choice == 6)
 						{
