@@ -646,13 +646,31 @@ void Donor::updateAccount(vector<Donor>& dataDonar, int index)
 		}
 		else if (choice == 5)
 		{
-			cout << "  Please enter your date latest donation\n  Like :Year-Month-Day : ";
-			string date_latest_donation; 
-			cin.ignore();
-			getline(cin, date_latest_donation);
-			dataDonar[index].date_latest_donation = date_latest_donation; 
-			cout << " \n-----------------------------\n";
 
+			while (true)
+			{
+				g
+ 
+			    cout << "  Please enter your date latest donation\n  Like :Year-Month-Day : ";
+			    string date_latest_donation;
+			    cin >> date_latest_donation; 
+
+			    int year = stoi(d.substr(0, 4));
+			    int month = stoi(d.substr(5, 6));
+			    int day = stoi(d.substr(8, 9));
+			    if (date_check(date_latest_donation) && month <= 12 && day <= 30 && year <= 2021 && year > 1899)
+				{
+				    cout << "Your date of latest donation is valid" << endl;
+				    cout << "-----------------------------\n";
+				    dataDonar[index].date_latest_donation = date_latest_donation;
+				    break;
+			    }
+			    else
+			    {
+				     cout << "Your date of latest donation is invalid , please try again " << endl;
+			    }
+
+		    }
 		}
 		else if (choice == 6)
 		{
