@@ -261,17 +261,89 @@ void Donor::reg()
 int Donor::login(vector<Donor>& dataDonar)
 {
 	int x; // to take the id from the user.
+	int check = 0;
 	string p; // password.
-	int idx=0; // to save the index of the user.
-	int idxl=0, idxr=0;
+	int idx = 0; // to save the index of the user.
+	int idxl = 0, idxr = 0;
 	bool flag = 0;
 	bool flag2 = 0;
 	sort(dataDonar.begin(), dataDonar.end(), [](const Donor& lhs, const Donor& rhs) {return lhs.id < rhs.id; });
-	printf("\n  Please enter your id : ");
-	scanf("%d", &x);
+	printf("please enter your id \n");
+	cin >> x;
+
+	if (dataDonar.size() == 1)
+	{
+		if (x == dataDonar[0].id)
+		{
+			cout << "please enter your password " << dataDonar[0].name << endl;
+			cin >> p;
+			if (p == dataDonar[0].password)
+			{
+				cout << "welcome to your account " << dataDonar[0].name << endl;
+				return 0;
+			}
+			else
+			{
+				while (true)
+				{
+					cout << "please re enter the right password Mr." << dataDonar[0].name << endl;
+					cout << "Or enter ' B ' to back\n";
+					cin >> p;
+					if (p == dataDonar[0].password)
+					{
+						cout << "welcome to your account " << dataDonar[0].name << endl;
+						return 0;
+					}
+					else if (p == "B")
+						return -1;
+
+				}
+			}
+		}
+		else
+		{
+			while (true)
+			{
+				cout << "please re enter the right id sir" << endl;
+				cout << "Or enter ' -1 ' to back\n";
+				cin >> x;
+
+				if (x == dataDonar[0].id)
+				{
+					cout << "please enter your password " << dataDonar[0].name << endl;;
+					cin >> p;
+					if (p == dataDonar[0].password)
+					{
+						cout << "welcome to your account " << dataDonar[0].name << endl;
+						return 0;
+					}
+					else
+					{
+						while (true)
+						{
+							cout << "please re enter the right password Mr " << dataDonar[0].name << endl;
+							cout << "Or enter ' B ' to back\n";
+							cin >> p;
+							if (p == dataDonar[0].password)
+							{
+								cout << "welcome to your account " << dataDonar[0].name << endl;
+								return 0;
+							}
+							else if (p == "B")
+								return -1;
+
+						}
+					}
+
+				}
+				else if (x == -1)
+					return -1;
+			}
+		}
+	}
 	int l, r, mid;
 	l = dataDonar[idxl].id;
-	idxr = (dataDonar.size()-1);
+	idxr = (dataDonar.size() - 1);
 	r = dataDonar[idxr].id;
 	while (l < r)
 	{
@@ -292,7 +364,7 @@ int Donor::login(vector<Donor>& dataDonar)
 		{
 			flag = 1;
 			idx = idxr;
-				break;
+			break;
 		}
 		else if (x < mid)
 		{
@@ -303,36 +375,53 @@ int Donor::login(vector<Donor>& dataDonar)
 		}
 		else if (x > mid)
 		{
-			l = dataDonar[idx+1].id;
+			l = dataDonar[idx + 1].id;
 		}  idxl = idx + 1;
 	}
 	if (flag) // if the id have been found.
 	{
-		printf("  Please enter your password : ");
+		cout << "welcome to your account Mr " << dataDonar[idx].name << endl;
 		cin >> p;
 		if (p == dataDonar[idx].password)
 		{
-			User::clear_screen(' ');
-			Table valid;
-			valid.add_row({ "welcome to your account sir" });
-			valid.format().font_color(Color::green).border("").corner("").padding_left(2);
-			cout << valid << endl;
-				flag2 = 1;
+			cout << "welcome to your account Mr " << dataDonar[idx].name << endl;
+			flag2 = 1;
 		}
 		else // password doesn't match.
 		{
-			Table error;
-			error.add_row({ "Wrong password" });
-			error.format().font_color(Color::red).border("").corner("").padding_left(2);
-			cout << error << endl;
+			printf("Wrong password \n");
+			while (true)
+			{
+				cout << "please re enter the right password Mr " << dataDonar[idx].name << endl;
+				cout << "Or enter ' B ' to back\n";
+				cin >> p;
+				if (p == dataDonar[idx].password)
+				{
+					cout << "welcome to your account Mr " << dataDonar[idx].name << endl;
+					return idx;
+				}
+				else if (p == "B")
+					return -1;
+
+			}
 		}
 	}
 	else // if the id doesn't found.
 	{
-		Table error;
-		error.add_row({ "This id is not found" });
-		error.format().font_color(Color::red).border("").corner("").padding_left(2);
-		cout << error << endl;
+		printf("this id is not found please enter ' 1 ' to enter it again \n");
+		printf("Or enter ' -1 ' to back\n");
+		cin >> x;
+		if (x == 1)
+		{
+			return Donor::login(dataDonar);
+		}
+		else if (x == -1)
+		{
+			return -1;
+		}
+
+
+
 	}
 	if (flag2)
 	{
@@ -342,7 +431,7 @@ int Donor::login(vector<Donor>& dataDonar)
 	{
 		return -1;
 	}
-	
+
 }
 
 void Donor::updateAccount(vector<Donor>& dataDonar, int index)
