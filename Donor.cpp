@@ -200,16 +200,20 @@ void Donor::reg()
 			cout << "\n  Please enter your date latest donation\n  Like :Year-Month-Day : ";
 			string d;
 			cin >> d;
+			int year = stoi(d.substr(0, 3)); //2020-03-15
+			int month = stoi(d.substr(5, 6));
+			int day = stoi(d.substr(8, 9));
+			cout << year << month << day;
 			int l = true;
 			do
 			{
-				if (date_check(d)) {
-					cout << "Your date of latest donation is valid" << endl;
-					date_latest_donation = d;
-					l = false;
-					break;
-				}
+				if (date_check(d) && year <= 2021 && month <= 12 && day <= 30) {
 
+						cout << "Your date of latest donation is valid" << endl;
+						date_latest_donation = d;
+						l = false;
+						break;
+				}
 				else {
 					cout << "Your date of latest donation is invalid , please try again " << endl;
 					cin >> d;
