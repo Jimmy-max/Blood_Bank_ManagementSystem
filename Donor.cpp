@@ -305,7 +305,7 @@ int Donor::login(vector<Donor>& dataDonar)
 	{
 		for (int i = 0; i < s.size(); i++)
 		{
-			if ((Donor::aski(s[i])) < 48 || (Donor::aski(s[i])) > 57)
+			if (((Donor::aski(s[i])) < 48 && (Donor::aski(s[i]))>45)||((Donor::aski(s[i])) < 45) || (Donor::aski(s[i])) > 57)
 			{
 				Table idReenter;
 				idReenter.add_row({ "please re enter the right id sir" });
@@ -382,7 +382,7 @@ int Donor::login(vector<Donor>& dataDonar)
 				{
 					for (int i = 0; i < s.size(); i++)
 					{
-						if ((Donor::aski(s[i])) < 48 || (Donor::aski(s[i])) > 57)
+						if (((Donor::aski(s[i])) < 48 && (Donor::aski(s[i])) > 45) || ((Donor::aski(s[i])) < 45) || (Donor::aski(s[i])) > 57)
 						{
 							Table idReenter;
 							idReenter.add_row({ "please re enter the right id sir" });

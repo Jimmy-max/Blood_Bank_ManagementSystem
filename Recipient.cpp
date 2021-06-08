@@ -181,7 +181,7 @@ int Recipient::login(vector<Recipient>& datarecipient)
 	{
 		for (int i = 0; i < s.size(); i++)
 		{
-			if ((Recipient::aski(s[i])) < 48 || (Recipient::aski(s[i])) > 57)
+			if (((Recipient::aski(s[i])) < 48 && (Recipient::aski(s[i])) > 45) || ((Recipient::aski(s[i])) < 45) || (Recipient::aski(s[i])) > 57)
 			{
 				Table idReenter;
 				idReenter.add_row({ "please re enter the right id sir" });
@@ -258,7 +258,7 @@ int Recipient::login(vector<Recipient>& datarecipient)
 				{
 					for (int i = 0; i < s.size(); i++)
 					{
-						if ((Recipient::aski(s[i])) < 48 || (Recipient::aski(s[i])) > 57)
+						if (((Recipient::aski(s[i])) < 48 && (Recipient::aski(s[i])) > 45) || ((Recipient::aski(s[i])) < 45) || (Recipient::aski(s[i])) > 57)
 						{
 							Table idReenter;
 							idReenter.add_row({ "please re enter the right id sir" });
